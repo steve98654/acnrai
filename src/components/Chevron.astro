@@ -1,0 +1,8 @@
+---
+// The ">" motif from the decks, drawn geometrically (same proportions as the tikz \chevron).
+interface Props { class?: string; color?: string; label?: string }
+const { class: cls, color = 'var(--purple)', label } = Astro.props;
+---
+<svg class={cls} viewBox="0 0 62 100" fill={color} role={label ? 'img' : undefined} aria-label={label} aria-hidden={label ? undefined : 'true'}>
+  <path d="M0 0 L62 50 L0 100 L0 79.5 L36.5 50 L0 20.5 Z" />
+</svg>

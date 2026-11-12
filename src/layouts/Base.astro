@@ -1,0 +1,98 @@
+---
+import '../styles/global.css';
+import Chevron from '../components/Chevron.astro';
+import { meta, nav, DRAFT } from '../data/site';
+
+interface Props { title?: string; description?: string }
+const { title = meta.title, description = meta.description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {DRAFT && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="theme-color" content="#09090b" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/lm-sans-demicond.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="/fonts/lm-sans-regular.woff" as="font" type="font/woff" crossorigin />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="nav" data-nav>
+      <div class="nav__in wrap">
+        <a class="nav__brand mono" href="/#top" aria-label="Accenture and Faculty, home">
+          ACCENTURE <Chevron class="nav__chev" /> FACULTY
+        </a>
+        <nav aria-label="Sections">
+          <ul class="nav__links">
+            {nav.map((n) => <li><a href={n.href} class={n.href === '#start' ? 'is-cta' : ''}>{n.label}</a></li>)}
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="foot">
+      <div class="wrap foot__in">
+        <p class="mono foot__brand"><span class="nowrap">ACCENTURE <Chevron class="nav__chev" /> FACULTY</span> /&nbsp; RESPONSIBLE AI / GAO</p>
+        <p class="foot__note">
+          Two weeks is a target for a standard scope. An evaluation gives evidence on the systems tested; it is not a
+          certification. Partner names and marks belong to their owners and are used to show model coverage.
+        </p>
+        <p class="mono foot__meta">{DRAFT ? 'November 2026 / Draft' : 'November 2026'}</p>
+      </div>
+    </footer>
+
+    <script>
+      // Solid nav after the hero; reveal-on-scroll.
+      const nav = document.querySelector('[data-nav]');
+      const onScroll = () => nav?.classList.toggle('is-solid', window.scrollY > 24);
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }),
+        { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>
+
+<style>
+  .skip { position: absolute; left: -9999px; top: 8px; z-index: 100; background: #fff; color: #000; padding: 8px 14px; }
+  .skip:focus { left: 8px; }
+
+  .nav { position: fixed; inset: 0 0 auto 0; z-index: 50; transition: background 0.3s var(--ease), border-color 0.3s var(--ease); border-bottom: 1px solid transparent; }
+  .nav.is-solid { background: rgba(9, 9, 11, 0.82); backdrop-filter: saturate(140%) blur(14px); -webkit-backdrop-filter: saturate(140%) blur(14px); border-bottom-color: var(--grid); }
+  .nav__in { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .nav__brand { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; letter-spacing: 0.24em; white-space: nowrap; }
+  :global(.nav__chev) { width: 7px; height: 11px; flex: none; }
+  .nav__links { display: flex; gap: clamp(16px, 2.6vw, 36px); font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; }
+  .nav__links a { color: var(--silver); transition: color 0.2s; padding: 6px 0; }
+  .nav__links a:hover { color: #fff; }
+  .nav__links a.is-cta { color: #fff; border-bottom: 1.5px solid var(--purple); }
+  @media (max-width: 760px) {
+    .nav__links li:not(:last-child) { display: none; }
+  }
+
+  .foot { background: var(--night); border-top: 1px solid var(--grid); color: var(--grey); }
+  .foot__in { padding-top: 40px; padding-bottom: 48px; display: grid; gap: 16px; grid-template-columns: 1fr; }
+  .foot__brand { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; letter-spacing: 0.22em; color: var(--silver); }
+  .nowrap { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+  .foot__note { font-size: 14px; max-width: 60em; line-height: 1.5; }
+  .foot__meta { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; }
+</style>
