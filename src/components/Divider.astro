@@ -1,0 +1,26 @@
+---
+// Section divider, as in the deck: black, faint grid, "SECTION 0x / 05", oversized chevron.
+import Chevron from './Chevron.astro';
+interface Props { n: string; title: string; sub: string; id?: string }
+const { n, title, sub, id } = Astro.props;
+---
+<section class="div grid-bg" id={id} aria-labelledby={`div-${n}`}>
+  <Chevron class="div__chev" />
+  <div class="wrap div__in">
+    <p class="mono div__num reveal">Section {n} / 05</p>
+    <div class="reveal">
+      <h2 class="display h2 div__title" id={`div-${n}`} set:html={title} />
+      <p class="lede div__sub">{sub}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .div { position: relative; overflow: hidden; min-height: clamp(420px, 68vh, 640px); display: flex; }
+  .div__in { position: relative; display: flex; flex-direction: column; justify-content: space-between; padding-top: 104px; padding-bottom: clamp(56px, 8vw, 96px); }
+  .div__num { font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--silver); }
+  .div__title { max-width: 12em; margin-bottom: 20px; }
+  .div__sub { max-width: 30em; }
+  :global(.div__chev) { position: absolute; right: clamp(-40px, 6vw, 120px); bottom: clamp(40px, 8vw, 90px); height: clamp(220px, 34vw, 420px); width: auto; opacity: 1; }
+  @media (max-width: 760px) { :global(.div__chev) { opacity: 0.35; right: -30px; } }
+</style>
