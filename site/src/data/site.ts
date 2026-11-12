@@ -22,6 +22,7 @@ export const nav = [
   { href: '/#assess', label: 'Assess' },
   { href: '/#govern', label: 'Govern' },
   { href: '/#assure', label: 'Red team' },
+  { href: '/usecases', label: 'Use cases' },
   { href: '/history', label: 'History' },
   { href: '/#start', label: 'Start', cta: true },
 ];
@@ -76,7 +77,7 @@ export const brings = [
   },
   {
     who: 'Faculty brings',
-    body: 'Frontier AI safety science, model evaluation and red-teaming expertise, and decision-grade data science.',
+    body: 'Frontier AI safety science, model evaluation and red teaming expertise, and decision grade data science.',
   },
 ];
 
@@ -91,9 +92,9 @@ export const dimensions = [
 export const outputs = ['AI system register', 'Maturity profile', 'Prioritised risks', 'Executive readout'];
 
 export const rapidEval = [
-  { when: 'Days 1–2', title: 'Scope', body: 'Use cases, policies, risk appetite.' },
-  { when: 'Days 3–5', title: 'Generate', body: 'Fable builds test suites from your policies.' },
-  { when: 'Week 2', title: 'Run and grade', body: 'Automated runs, expert-calibrated grading.' },
+  { when: 'Days 1 to 2', title: 'Scope', body: 'Use cases, policies, risk appetite.' },
+  { when: 'Days 3 to 5', title: 'Generate', body: 'Fable builds test suites from your policies.' },
+  { when: 'Week 2', title: 'Run and grade', body: 'Automated runs, expert calibrated grading.' },
   { when: 'Week 2', title: 'Read out', body: 'Scored findings and priority actions.' },
 ];
 
@@ -102,8 +103,8 @@ export const loop = [
   { n: '02', title: 'Generate', body: 'Thousands of realistic and adversarial tests.' },
   { n: '03', title: 'Run', body: 'Against your models and agents.' },
   { n: '04', title: 'Grade', body: 'Every response against policy.' },
-  { n: '05', title: 'Calibrate', body: 'Faculty experts verify high-severity findings.' },
-  { n: '06', title: 'Evidence', body: 'Scored findings and an audit-ready pack.' },
+  { n: '05', title: 'Calibrate', body: 'Faculty experts verify high severity findings.' },
+  { n: '06', title: 'Evidence', body: 'Scored findings and an audit ready pack.' },
 ];
 
 export const maturityLevels = ['Initial', 'Developing', 'Defined', 'Managed', 'Optimised'];
@@ -117,23 +118,23 @@ export const heatmap = [
 export const findings = [
   'Customer agent open to prompt injection hidden in inbound email.',
   'A third of GenAI use cases missing from any register.',
-  'No named owner for third-party model risk.',
+  'No named owner for third party model risk.',
 ];
 
 export const findingToAction = [
   { finding: 'Use cases missing from the register', action: 'Mandatory AI intake, inventory and risk tiering at idea stage', owner: 'AI office' },
-  { finding: 'Agents open to prompt injection', action: 'Release gate needs red-team sign-off for tier 1 and 2 systems', owner: 'CISO' },
+  { finding: 'Agents open to prompt injection', action: 'Release gate needs red team sign off for tier 1 and 2 systems', owner: 'CISO' },
   { finding: 'Bias untested on live populations', action: 'Fairness thresholds and monitoring KPIs per use case', owner: 'Model risk' },
-  { finding: 'No owner for third-party model risk', action: 'Vendor and model due diligence with contractual controls', owner: 'Procurement' },
+  { finding: 'No owner for third party model risk', action: 'Vendor and model due diligence with contractual controls', owner: 'Procurement' },
   { finding: 'Policies not mapped to regulation', action: 'One control set mapped to EU AI Act, ISO/IEC 42001 and NIST AI RMF', owner: 'Compliance' },
 ];
 
 export const lifecycle = [
   { stage: 'Ideate', gate: 'Intake and risk tier' },
   { stage: 'Build', gate: 'Data and design review' },
-  { stage: 'Validate', gate: 'Eval and red-team gate', key: true },
-  { stage: 'Deploy', gate: 'Approval and sign-off' },
-  { stage: 'Monitor', gate: 'Drift, incidents, re-test' },
+  { stage: 'Validate', gate: 'Eval and red team gate', key: true },
+  { stage: 'Deploy', gate: 'Approval and sign off' },
+  { stage: 'Monitor', gate: 'Drift, incidents, retest' },
 ];
 
 export const operate = [
@@ -150,14 +151,14 @@ export const prc = [
 
 export const security = [
   'Prompt injection and jailbreak defences',
-  'Least-privilege agent and tool permissions',
+  'Least privilege agent and tool permissions',
   'Vendor and model due diligence',
 ];
 
 export const attacks = ['Prompt injection', 'Harmful output', 'Agent tool misuse', 'Data leakage', 'Jailbreaks'];
 
 export const cadence = [
-  { when: 'Pre-launch', body: 'Full red team, tier 1 and 2 systems.' },
+  { when: 'Before launch', body: 'Full red team, tier 1 and 2 systems.' },
   { when: 'Every release', body: 'Automated regression attack suite.' },
   { when: 'Continuous', body: 'Live monitoring, drift, new threat intel.' },
   { when: 'Annually', body: 'Independent assurance to the board.' },
@@ -184,7 +185,7 @@ export const nextSteps = [
 // ---------------------------------------------------------------------
 // History page: engagements with the GAO labs (Google, Anthropic, OpenAI).
 // Only publicly sourced claims, each with its source. `confirm: true` marks
-// internal items that still need sign-off; they show a "To confirm" chip
+// internal items that still need sign off; they show a "To confirm" chip
 // while DRAFT is true.
 // ---------------------------------------------------------------------
 export const FACULTY_EVALS_URL = 'https://faculty.ai/en-gb/ai-evaluations-redteaming';
@@ -222,7 +223,7 @@ export const history: {
         when: 'Gemini 4',
         who: 'Faculty',
         title: 'Gemini 4 Safety & Security Report',
-        body: 'Listed by Faculty among the frontier model safety reports connected to its evaluation and red-teaming work.',
+        body: 'Listed by Faculty among the frontier model safety reports connected to its evaluation and red teaming work.',
         source: { label: 'faculty.ai', href: FACULTY_EVALS_URL },
         confirm: true,
       },
@@ -253,7 +254,7 @@ export const history: {
         when: 'Today',
         who: 'Accenture and Faculty',
         title: 'Claude Fable rapid evaluation',
-        body: 'Claude Fable writes, runs and grades the test suites in our two-week rapid evaluation; Faculty scientists verify high-severity findings.',
+        body: 'Claude Fable writes, runs and grades the test suites in our two week rapid evaluation; Faculty scientists verify high severity findings.',
       },
     ],
   },
@@ -261,13 +262,13 @@ export const history: {
     logo: 'openai',
     name: 'OpenAI',
     model: 'GPT',
-    summary: 'Pre-launch red teaming of OpenAI’s o1 reasoning model.',
+    summary: 'Red teaming before launch of OpenAI’s o1 reasoning model.',
     items: [
       {
         when: '2024',
         who: 'Faculty',
-        title: 'o1 pre-launch red teaming',
-        body: 'Faculty red-teamed OpenAI’s o1 model before launch, as documented in the o1 system card.',
+        title: 'o1 red teaming before launch',
+        body: 'Faculty red teamed OpenAI’s o1 model before launch, as documented in the o1 system card.',
         source: { label: 'faculty.ai', href: FACULTY_EVALS_URL },
       },
     ],
@@ -282,7 +283,7 @@ export const historyQuote = {
 };
 
 export const facultyFacts = [
-  { k: '50+', v: 'PhD-level evaluation and red-teaming experts at Faculty' },
-  { k: '3 labs', v: 'Evaluation and red-teaming work with Google, Anthropic and OpenAI' },
+  { k: '50+', v: 'PhD level evaluation and red teaming experts at Faculty' },
+  { k: '3 labs', v: 'Evaluation and red teaming work with Google, Anthropic and OpenAI' },
   { k: 'CBRNE', v: 'Misuse evaluations, plus systemic harms such as manipulation and radicalisation' },
 ];
