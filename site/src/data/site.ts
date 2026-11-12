@@ -18,11 +18,12 @@ export const meta = {
 };
 
 export const nav = [
-  { href: '#offer', label: 'Offer' },
-  { href: '#assess', label: 'Assess' },
-  { href: '#govern', label: 'Govern' },
-  { href: '#assure', label: 'Red team' },
-  { href: '#start', label: 'Start' },
+  { href: '/#offer', label: 'Offer' },
+  { href: '/#assess', label: 'Assess' },
+  { href: '/#govern', label: 'Govern' },
+  { href: '/#assure', label: 'Red team' },
+  { href: '/history', label: 'History' },
+  { href: '/#start', label: 'Start', cta: true },
 ];
 
 export const moment = [
@@ -178,4 +179,110 @@ export const nextSteps = [
   { week: 2, n: '04', title: 'Launch the Fable rapid eval', owner: 'Accenture, Faculty' },
   { week: 3, n: '—', title: 'Rapid eval in flight', owner: 'Tests generated, run and graded; findings verified by Faculty' },
   { week: 4, n: '05', title: 'Executive readout and governance design workshop', owner: 'Joint team' },
+];
+
+// ---------------------------------------------------------------------
+// History page: engagements with the GAO labs (Google, Anthropic, OpenAI).
+// Only publicly sourced claims, each with its source. `confirm: true` marks
+// internal items that still need sign-off; they show a "To confirm" chip
+// while DRAFT is true.
+// ---------------------------------------------------------------------
+export const FACULTY_EVALS_URL = 'https://faculty.ai/en-gb/ai-evaluations-redteaming';
+
+export interface Engagement {
+  when: string;
+  who: string;
+  title: string;
+  body: string;
+  source?: { label: string; href: string };
+  confirm?: boolean;
+}
+
+export const history: {
+  logo: 'google' | 'anthropic' | 'openai';
+  name: string;
+  model: string;
+  summary: string;
+  items: Engagement[];
+}[] = [
+  {
+    logo: 'google',
+    name: 'Google',
+    model: 'Gemini',
+    summary: 'Red teaming and evaluation of generative AI in an enterprise HR setting, alongside safety evaluation of Gemini.',
+    items: [
+      {
+        when: 'Accenture',
+        who: 'Accenture Responsible AI',
+        title: 'Google HR red teaming and evaluations',
+        body: 'Red teaming and evaluation of generative AI used in Google’s HR processes, led by Ted Kwartler, Managing Director, Responsible AI at Accenture.',
+        confirm: true,
+      },
+      {
+        when: 'Gemini 4',
+        who: 'Faculty',
+        title: 'Gemini 4 Safety & Security Report',
+        body: 'Listed by Faculty among the frontier model safety reports connected to its evaluation and red-teaming work.',
+        source: { label: 'faculty.ai', href: FACULTY_EVALS_URL },
+        confirm: true,
+      },
+    ],
+  },
+  {
+    logo: 'anthropic',
+    name: 'Anthropic',
+    model: 'Claude',
+    summary: 'Biosecurity evaluation design for Claude 4, and Claude as the engine of our rapid evaluation.',
+    items: [
+      {
+        when: '2025',
+        who: 'Faculty',
+        title: 'Claude 4 biosecurity evaluations',
+        body: 'Faculty helped design the biosecurity evaluations for Anthropic’s Claude Opus 4 and Sonnet 4 models, documented in the Claude 4 system card.',
+        source: { label: 'faculty.ai', href: FACULTY_EVALS_URL },
+      },
+      {
+        when: '2025',
+        who: 'Faculty',
+        title: 'Claude Opus 4.5 system card',
+        body: 'Faculty cites the Claude Opus 4.5 system card among the frontier model reports tied to its evaluation work.',
+        source: { label: 'faculty.ai', href: FACULTY_EVALS_URL },
+        confirm: true,
+      },
+      {
+        when: 'Today',
+        who: 'Accenture and Faculty',
+        title: 'Claude Fable rapid evaluation',
+        body: 'Claude Fable writes, runs and grades the test suites in our two-week rapid evaluation; Faculty scientists verify high-severity findings.',
+      },
+    ],
+  },
+  {
+    logo: 'openai',
+    name: 'OpenAI',
+    model: 'GPT',
+    summary: 'Pre-launch red teaming of OpenAI’s o1 reasoning model.',
+    items: [
+      {
+        when: '2024',
+        who: 'Faculty',
+        title: 'o1 pre-launch red teaming',
+        body: 'Faculty red-teamed OpenAI’s o1 model before launch, as documented in the o1 system card.',
+        source: { label: 'faculty.ai', href: FACULTY_EVALS_URL },
+      },
+    ],
+  },
+];
+
+export const historyQuote = {
+  text: 'It’s absolutely paramount that foundation models are built safely.',
+  who: 'Sam Altman, CEO, OpenAI',
+  context: 'on working with Faculty',
+  source: FACULTY_EVALS_URL,
+};
+
+export const facultyFacts = [
+  { k: '50+', v: 'PhD-level evaluation and red-teaming experts at Faculty' },
+  { k: '3 labs', v: 'Evaluation and red-teaming work with Google, Anthropic and OpenAI' },
+  { k: 'CBRNE', v: 'Misuse evaluations, plus systemic harms such as manipulation and radicalisation' },
 ];
