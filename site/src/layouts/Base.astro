@@ -35,7 +35,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         </a>
         <nav aria-label="Sections">
           <ul class="nav__links">
-            {nav.map((n) => <li><a href={n.href} class={n.href === '#start' ? 'is-cta' : ''}>{n.label}</a></li>)}
+            {nav.map((n) => <li><a href={n.href} class={n.cta ? 'is-cta' : ''} aria-current={Astro.url.pathname.replace(/\/$/, '') === n.href ? 'page' : undefined}>{n.label}</a></li>)}
           </ul>
         </nav>
       </div>
@@ -84,9 +84,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   .nav__links { display: flex; gap: clamp(16px, 2.6vw, 36px); font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; }
   .nav__links a { color: var(--silver); transition: color 0.2s; padding: 6px 0; }
   .nav__links a:hover { color: #fff; }
+  .nav__links a[aria-current="page"] { color: #fff; }
   .nav__links a.is-cta { color: #fff; border-bottom: 1.5px solid var(--purple); }
   @media (max-width: 760px) {
-    .nav__links li:not(:last-child) { display: none; }
+    .nav__links li:not(:nth-last-child(-n + 2)) { display: none; }
   }
 
   .foot { background: var(--night); border-top: 1px solid var(--grid); color: var(--grey); }

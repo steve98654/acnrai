@@ -1,0 +1,138 @@
+---
+import Base from '../layouts/Base.astro';
+import Chevron from '../components/Chevron.astro';
+import Logo from '../components/Logo.astro';
+import { history, historyQuote, facultyFacts, DRAFT, FACULTY_EVALS_URL } from '../data/site';
+---
+<Base
+  title="Our history with Google, Anthropic and OpenAI | Accenture and Faculty"
+  description="Evaluation and red-teaming engagements with the GAO labs: Google, Anthropic and OpenAI."
+>
+  <section class="top grid-bg" aria-labelledby="hist-title">
+    <Chevron class="top__chev" />
+    <div class="wrap top__in">
+      <p class="kicker reveal">History / GAO engagements</p>
+      <h1 class="display h1 reveal" id="hist-title">Tested with<br />the labs.</h1>
+      <p class="lede reveal">
+        Accenture and Faculty have evaluated and red-teamed frontier models with Google, Anthropic and OpenAI. This is
+        the work behind the method we bring to your AI.
+      </p>
+      <ul class="top__jump mono reveal">
+        {history.map((h) => (
+          <li><a href={`#${h.logo}`}><Logo name={h.logo} size={20} /> {h.name}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec sec--light facts" aria-label="At a glance">
+    <div class="wrap facts__grid">
+      {facultyFacts.map((f, i) => (
+        <div class="reveal" style={`transition-delay:${i * 80}ms`}>
+          <p class="display facts__k">{f.k}</p>
+          <p class="muted">{f.v}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {history.map((h, i) => (
+    <section class={`sec lab ${i % 2 ? 'sec--mist' : 'sec--light'}`} id={h.logo} aria-labelledby={`lab-${h.logo}`}>
+      <div class="wrap lab__in">
+        <header class="lab__head reveal">
+          <p class="mono lab__n">0{i + 1} / 03</p>
+          <Logo name={h.logo} size={56} class="lab__logo" />
+          <h2 class="display h2" id={`lab-${h.logo}`}>{h.name}</h2>
+          <span class="mono lab__model">{h.model}</span>
+          <p class="lab__sum">{h.summary}</p>
+        </header>
+        <ol class="tl">
+          {h.items.map((e, j) => (
+            <li class="tl__item reveal" style={`transition-delay:${j * 80}ms`}>
+              <span class="mono tl__when">{e.when}</span>
+              <div class="tl__body">
+                <p class="mono tl__who">{e.who}</p>
+                <h3 class="display h3">{e.title}</h3>
+                <p class="tl__text">{e.body}</p>
+                <p class="tl__meta">
+                  {e.source && <a class="mono tl__src" href={e.source.href} target="_blank" rel="noopener">Source: {e.source.label} ↗</a>}
+                  {DRAFT && e.confirm && <span class="mono tl__flag">To confirm</span>}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  ))}
+
+  <section class="sec sec--dark quote" aria-label="Testimonial">
+    <div class="wrap">
+      <figure class="reveal">
+        <Chevron class="quote__chev" />
+        <blockquote class="display">“{historyQuote.text}”</blockquote>
+        <figcaption class="mono">{historyQuote.who} <span class="muted">/ {historyQuote.context}</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="close grid-bg" aria-labelledby="hist-close">
+    <div class="wrap close__in reveal">
+      <h2 class="display h2" id="hist-close">The same method, applied to your AI.</h2>
+      <div class="close__cta">
+        <a class="btn btn--primary" href="/#start">Start a rapid eval <Chevron color="currentColor" /></a>
+        <a class="btn" href="/#offer">See the offer</a>
+      </div>
+      <p class="close__note">
+        Sources: <a href={FACULTY_EVALS_URL} target="_blank" rel="noopener">Faculty, AI evaluations and red teaming</a> and the
+        model system cards it links. Partner names and marks belong to their owners.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .top { position: relative; overflow: hidden; }
+  .top__in { position: relative; display: grid; gap: 28px; padding-top: clamp(140px, 20vh, 200px); padding-bottom: clamp(64px, 9vw, 112px); }
+  :global(.top__chev) { position: absolute; right: clamp(-60px, 6vw, 120px); bottom: 48px; height: clamp(220px, 40vh, 440px); width: auto; }
+  @media (max-width: 900px) { :global(.top__chev) { opacity: 0.32; right: -50px; } }
+  .top__jump { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+  .top__jump a { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 20px; border: 1px solid #3f3f46; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; transition: border-color 0.2s, background 0.2s; }
+  .top__jump a:hover { border-color: var(--purple); background: rgba(161, 0, 255, 0.08); }
+
+  .facts { padding: clamp(56px, 7vw, 88px) 0; border-bottom: 1px solid var(--rule); }
+  .facts__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(32px, 4vw, 56px); }
+  .facts__k { font-size: clamp(44px, 5vw, 64px); color: var(--purple); line-height: 1; margin-bottom: 12px; }
+  @media (max-width: 860px) { .facts__grid { grid-template-columns: 1fr; } }
+
+  .lab__in { display: grid; grid-template-columns: minmax(260px, 0.8fr) 1.4fr; gap: clamp(40px, 7vw, 120px); align-items: start; }
+  @media (max-width: 900px) { .lab__in { grid-template-columns: 1fr; } }
+  .lab__head { display: grid; gap: 18px; position: sticky; top: 104px; }
+  @media (max-width: 900px) { .lab__head { position: static; } }
+  .lab__n { font-size: 13px; letter-spacing: 0.22em; color: var(--grey); }
+  :global(.lab__logo) { margin-top: 8px; }
+  .lab__model { justify-self: start; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid var(--rule); padding: 4px 10px; color: var(--grey); }
+  .lab__sum { font-size: 19px; color: var(--grey); max-width: 26em; }
+
+  .tl { position: relative; display: grid; gap: 0; }
+  .tl__item { display: grid; grid-template-columns: 110px 1fr; gap: 24px; padding: 32px 0; border-top: 1px solid var(--rule); }
+  .tl__item:last-child { border-bottom: 1px solid var(--rule); }
+  .tl__when { font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple); padding-top: 4px; }
+  .tl__body { display: grid; gap: 10px; }
+  .tl__who { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); }
+  .tl__text { font-size: 18px; max-width: 34em; }
+  .tl__meta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 4px; }
+  .tl__src { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); border-bottom: 1.5px solid var(--purple); padding-bottom: 2px; }
+  .tl__flag { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--deep); background: #f1e3ff; padding: 3px 8px; }
+  @media (max-width: 520px) { .tl__item { grid-template-columns: 1fr; gap: 8px; } }
+
+  .quote figure { margin: 0; position: relative; display: grid; gap: 28px; max-width: 980px; }
+  .quote blockquote { margin: 0; font-size: clamp(34px, 4.6vw, 60px); line-height: 1.08; }
+  .quote figcaption { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--silver); }
+  :global(.quote__chev) { width: 22px; height: 36px; }
+
+  .close__in { display: grid; gap: 32px; padding-top: clamp(88px, 12vw, 160px); padding-bottom: clamp(88px, 12vw, 160px); }
+  .close__cta { display: flex; flex-wrap: wrap; gap: 14px; }
+  .close__note { font-size: 14px; color: var(--grey); max-width: 52em; }
+  .close__note a { color: var(--silver); border-bottom: 1px solid var(--grey); }
+</style>

@@ -48,11 +48,14 @@ const weeks = [1, 2, 3, 4];
           <a class="btn" href="#offer">See the offer</a>
         </div>
       </div>
-      <div class="hero__gao mono">
-        <span class="hero__with">With GAO</span>
-        {partners.map((p) => (
-          <span class="hero__p"><Logo name={p.logo} size={18} /> {p.name}</span>
-        ))}
+      <div class="hero__gao">
+        <p class="hero__with mono">In partnership with Google, Anthropic and OpenAI</p>
+        <ul class="hero__logos">
+          {partners.map((p) => (
+            <li class="hero__p"><Logo name={p.logo} size={44} /><span class="display">{p.name}</span></li>
+          ))}
+        </ul>
+        <a class="hero__hist mono" href="/history">Our history with GAO <Chevron color="currentColor" /></a>
       </div>
     </div>
   </section>
@@ -456,9 +459,14 @@ const weeks = [1, 2, 3, 4];
   .hero__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px; }
   :global(.hero__chev) { position: absolute; right: clamp(-80px, 5vw, 110px); bottom: 14vh; height: clamp(300px, 56vh, 620px); width: auto; }
   @media (max-width: 900px) { :global(.hero__chev) { opacity: 0.32; right: -60px; } }
-  .hero__gao { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 32px; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; border-top: 1px solid var(--grid); padding-top: 24px; }
-  .hero__with { color: var(--silver); }
-  .hero__p { display: inline-flex; align-items: center; gap: 10px; color: #fff; letter-spacing: 0.12em; }
+  .hero__gao { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 20px 40px; border-top: 1px solid var(--grid); padding-top: 28px; }
+  .hero__with { grid-column: 1 / -1; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--silver); }
+  .hero__logos { display: flex; flex-wrap: wrap; align-items: center; gap: 20px clamp(32px, 5vw, 72px); }
+  .hero__p { display: inline-flex; align-items: center; gap: 16px; color: #fff; font-size: clamp(26px, 2.8vw, 38px); line-height: 1; }
+  .hero__hist { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); padding-bottom: 6px; border-bottom: 1.5px solid var(--purple); white-space: nowrap; transition: color 0.2s; }
+  .hero__hist:hover { color: #fff; }
+  .hero__hist :global(svg) { width: 7px; height: 11px; }
+  @media (max-width: 760px) { .hero__gao { grid-template-columns: 1fr; } .hero__p :global(svg) { width: 32px; height: 32px; } .hero__hist { justify-self: start; } }
 
   /* ---------- shared layout ---------- */
   .cols3 { display: grid; gap: clamp(32px, 4vw, 56px); grid-template-columns: repeat(3, 1fr); }
