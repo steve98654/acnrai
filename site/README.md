@@ -22,3 +22,10 @@ npm run build    # static output in dist/
 
 Fonts: Latin Modern (GUST Font License), self-hosted in `public/fonts/`.
 Partner marks: monochrome Simple Icons (Google, Anthropic) and the deck's OpenAI mark.
+
+## Password
+
+The whole site sits behind a password gate (`functions/_middleware.js`, a Cloudflare Pages Function).
+Set `SITE_PASSWORD` as an encrypted secret in Cloudflare: Pages project, Settings, Variables and Secrets,
+for Production (and Preview if wanted), then redeploy. Until it is set the site shows a locked page.
+Visitors stay signed in for 30 days; changing the password signs everyone out; `/logout` signs out.
