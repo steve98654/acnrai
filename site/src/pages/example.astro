@@ -1,0 +1,386 @@
+---
+import Base from '../layouts/Base.astro';
+import Chevron from '../components/Chevron.astro';
+import {
+  firm, journey, inventory, maturity, rapidEval, topFindings, actions, council,
+  prcBuild, securityWins, redTeam, openHigh, monitors, beforeAfter,
+} from '../data/example';
+
+const maxHigh = Math.max(...openHigh.map((o) => o.v));
+const maxVec = Math.max(...redTeam.vectors.map((v) => v.found), 1);
+---
+<Base
+  title="Worked example | Accenture and Faculty Responsible AI"
+  description="A fictitious financial services group taken through assessment, governance, red teaming and monitoring."
+>
+  <!-- Hero -->
+  <section class="top grid-bg" aria-labelledby="ex-title">
+    <Chevron class="top__chev" />
+    <div class="wrap top__in">
+      <p class="kicker reveal">Worked example / Fictitious company</p>
+      <h1 class="display h1 reveal" id="ex-title">{firm.name}.<br />The full journey.</h1>
+      <p class="lede reveal">
+        One firm taken through every part of the offer, from the first inventory to live monitoring. {firm.name} is
+        invented, and so are all of its numbers and findings.
+      </p>
+      <span class="mono fict reveal">Fictitious example</span>
+    </div>
+  </section>
+
+  <!-- Profile -->
+  <section class="sec sec--light" aria-labelledby="ex-profile">
+    <div class="wrap profile">
+      <div class="reveal">
+        <p class="kicker">The client</p>
+        <h2 class="display h2" id="ex-profile">{firm.name}</h2>
+        <p class="muted profile__tag">{firm.tagline}</p>
+        <dl class="facts">
+          {firm.facts.map((f) => <div><dt class="mono">{f.k}</dt><dd>{f.v}</dd></div>)}
+        </dl>
+      </div>
+      <div class="trigger reveal">
+        <p class="kicker">Why they called</p>
+        <p class="display trigger__q">{firm.trigger}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Journey -->
+  <section class="sec sec--dark" aria-labelledby="ex-journey">
+    <div class="wrap">
+      <header class="sec-head reveal">
+        <p class="kicker">Six months</p>
+        <h2 class="display h2" id="ex-journey">Four stages, one team.</h2>
+      </header>
+      <ol class="journey reveal">
+        {journey.map((j) => (
+          <li>
+            <a href={`#stage-${j.n}`}>
+              <span class="mono journey__n">{j.n}</span>
+              <span class="display journey__s">{j.stage}</span>
+              <span class="mono journey__w">{j.when}</span>
+              <span class="journey__b">{j.body}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 01 Assess -->
+  <section class="stage grid-bg" id="stage-01">
+    <div class="wrap stage__in"><span class="mono">Stage 01 / 04 / Weeks 1 to 2</span><h2 class="display h2">Assess</h2></div>
+  </section>
+  <section class="sec sec--light" aria-label="Assessment results">
+    <div class="wrap">
+      <ul class="kpis reveal">
+        {inventory.map((k) => <li><span class="display kpis__v">{k.v}</span><span class="kpis__k">{k.k}</span></li>)}
+      </ul>
+
+      <div class="split">
+        <div class="reveal">
+          <p class="kicker">Maturity, current against target</p>
+          <ul class="mat">
+            {maturity.map((m) => (
+              <li>
+                <span class="mat__d">{m.d}</span>
+                <span class="mat__track" aria-label={`${m.d}: ${m.now} of 5, target ${m.target}`}>
+                  <span class="mat__now" style={`width:${(m.now / 5) * 100}%`}></span>
+                  <span class="mat__tgt" style={`left:${(m.target / 5) * 100}%`}></span>
+                </span>
+                <span class="mono mat__v">{m.now} / 5</span>
+              </li>
+            ))}
+          </ul>
+          <p class="mono legend"><span class="sw"></span>Current <span class="sw sw--t"></span>Target</p>
+        </div>
+        <div class="reveal">
+          <p class="kicker">Top findings</p>
+          <ol class="find">
+            {topFindings.map((f) => (
+              <li><span class={`mono sev sev--${f.sev.toLowerCase()}`}>{f.sev}</span><span>{f.text}</span></li>
+            ))}
+          </ol>
+        </div>
+      </div>
+
+      <div class="reveal tablewrap">
+        <p class="kicker">Claude Fable rapid eval on five priority systems</p>
+        <table class="tbl">
+          <thead><tr><th>System</th><th>Model</th><th>Tests</th><th>Pass rate</th><th>High severity</th></tr></thead>
+          <tbody>
+            {rapidEval.map((r) => (
+              <tr><td>{r.system}</td><td class="mono">{r.model}</td><td class="num">{r.tests}</td><td class="num">{r.pass}</td><td class="num"><span class="hi">{r.high}</span></td></tr>
+            ))}
+          </tbody>
+        </table>
+        <p class="mono note">9,000 tests generated from {firm.name} policies. Every high severity finding verified by Faculty.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Design -->
+  <section class="stage grid-bg" id="stage-02">
+    <div class="wrap stage__in"><span class="mono">Stage 02 / 04 / Weeks 3 to 6</span><h2 class="display h2">Design</h2></div>
+  </section>
+  <section class="sec sec--light" aria-label="Governance design">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="kicker">Every finding becomes an owned action</p>
+        <div class="fta" role="table" aria-label="Findings mapped to actions and owners">
+          {actions.map((a) => (
+            <div class="fta__row" role="row">
+              <span role="cell" class="fta__f">{a.finding}</span>
+              <span role="cell" aria-hidden="true"><Chevron class="fta__chev" /></span>
+              <span role="cell">{a.action}</span>
+              <span role="cell" class="mono fta__o">{a.owner}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="council reveal">
+        <p class="kicker">The RAI council</p>
+        <dl>
+          {council.map((c) => <div><dt class="mono">{c.role}</dt><dd>{c.who}</dd></div>)}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 Implement -->
+  <section class="stage grid-bg" id="stage-03">
+    <div class="wrap stage__in"><span class="mono">Stage 03 / 04 / Months 2 to 5</span><h2 class="display h2">Implement</h2></div>
+  </section>
+  <section class="sec sec--mist" aria-label="Implementation">
+    <div class="wrap">
+      <p class="kicker reveal">PRC, Policy, Risk and Controls, built and live</p>
+      <div class="prc">
+        {prcBuild.map((p, i) => (
+          <article class={`prc__col reveal ${i === 2 ? 'is-key' : ''}`} style={`transition-delay:${i * 80}ms`}>
+            <span class="display prc__l">{p.letter}</span>
+            <p class="display prc__n">{p.n} <span>{p.unit}</span></p>
+            <ul>{p.items.map((it) => <li>{it}</li>)}</ul>
+          </article>
+        ))}
+      </div>
+      <div class="sec-wins reveal">
+        <p class="kicker">Security by design</p>
+        <ul>{securityWins.map((s) => <li><span class="display">{s.v}</span><span class="muted">{s.k}</span></li>)}</ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 Assure -->
+  <section class="stage grid-bg" id="stage-04">
+    <div class="wrap stage__in"><span class="mono">Stage 04 / 04 / Month 2 onward</span><h2 class="display h2">Assure</h2></div>
+  </section>
+  <section class="sec sec--dark" aria-label="Red teaming and monitoring">
+    <div class="wrap">
+      <header class="sec-head reveal">
+        <p class="kicker">Red team / {redTeam.target}</p>
+        <h3 class="display h2">Six ways in. All six closed.</h3>
+      </header>
+      <ul class="kpis kpis--dark reveal">
+        {redTeam.stats.map((k) => <li><span class="display kpis__v">{k.v}</span><span class="kpis__k">{k.k}</span></li>)}
+      </ul>
+      <div class="split">
+        <div class="reveal">
+          <p class="kicker">Exploit paths by attack type</p>
+          <ul class="vec">
+            {redTeam.vectors.map((v) => (
+              <li>
+                <span class="vec__t">{v.t}</span>
+                <span class="vec__track"><span class="vec__bar" style={`width:${(v.found / maxVec) * 100}%`}></span></span>
+                <span class="mono vec__n">{v.found}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="reveal">
+          <p class="kicker">Open high severity findings, all systems</p>
+          <svg class="chart" viewBox="0 0 360 200" role="img" aria-label={`Open high severity findings by month: ${openHigh.map((o) => `${o.m} ${o.v}`).join(', ')}`}>
+            {openHigh.map((o, i) => {
+              const h = (o.v / maxHigh) * 140;
+              const x = 14 + i * 58;
+              return (
+                <g>
+                  <rect x={x} y={160 - h} width="40" height={h} fill={i === openHigh.length - 1 ? 'var(--purple)' : '#3f3f46'} />
+                  <text x={x + 20} y={152 - h} text-anchor="middle" class="chart__v">{o.v}</text>
+                  <text x={x + 20} y={184} text-anchor="middle" class="chart__m">{o.m.replace('M', 'Month ')}</text>
+                </g>
+              );
+            })}
+            <line x1="0" y1="160.5" x2="360" y2="160.5" stroke="#3f3f46" />
+          </svg>
+        </div>
+      </div>
+      <dl class="mon reveal">
+        {monitors.map((m) => <div><dt class="mono">{m.k}</dt><dd>{m.v}</dd></div>)}
+      </dl>
+    </div>
+  </section>
+
+  <!-- Outcome -->
+  <section class="sec sec--light" aria-labelledby="ex-out">
+    <div class="wrap">
+      <header class="sec-head reveal">
+        <p class="kicker">Six months later</p>
+        <h2 class="display h2" id="ex-out">From unanswerable to evidenced.</h2>
+      </header>
+      <div class="ba reveal" role="table" aria-label="Before and after">
+        <div class="ba__row ba__head" role="row"><span role="columnheader"></span><span class="mono" role="columnheader">Before</span><span class="mono" role="columnheader">After</span></div>
+        {beforeAfter.map((b) => (
+          <div class="ba__row" role="row">
+            <span role="cell" class="ba__k">{b.k}</span>
+            <span role="cell" class="display ba__b">{b.before}</span>
+            <span role="cell" class="display ba__a">{b.after}</span>
+          </div>
+        ))}
+      </div>
+      <p class="mono note">{firm.name} is fictitious. All figures illustrate what an engagement reports; none are measured results.</p>
+    </div>
+  </section>
+
+  <section class="close grid-bg" aria-labelledby="ex-close">
+    <div class="wrap close__in reveal">
+      <h2 class="display h2" id="ex-close">Start where {firm.name} started.</h2>
+      <p class="lede">A two week Claude Fable rapid eval on your highest risk systems.</p>
+      <div class="close__cta">
+        <a class="btn btn--primary" href="/#start">Start a rapid eval <Chevron color="currentColor" /></a>
+        <a class="btn" href="/usecases">See more use cases</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .top { position: relative; overflow: hidden; }
+  .top__in { position: relative; display: grid; gap: 28px; justify-items: start; padding-top: clamp(140px, 20vh, 200px); padding-bottom: clamp(64px, 9vw, 112px); }
+  :global(.top__chev) { position: absolute; right: clamp(-60px, 6vw, 120px); bottom: 48px; height: clamp(220px, 40vh, 440px); width: auto; }
+  @media (max-width: 900px) { :global(.top__chev) { opacity: 0.32; right: -50px; } }
+  .fict { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid var(--purple); color: #fff; padding: 6px 12px; }
+
+  .profile { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 7vw, 120px); align-items: start; }
+  @media (max-width: 900px) { .profile { grid-template-columns: 1fr; } }
+  .profile h2 { margin-top: 14px; }
+  .profile__tag { margin-top: 10px; font-size: 18px; }
+  .facts { margin: 32px 0 0; display: grid; }
+  .facts div { display: grid; grid-template-columns: 180px 1fr; gap: 16px; padding: 14px 0; border-top: 1px solid var(--rule); }
+  .facts dt { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--grey); padding-top: 3px; }
+  .facts dd { margin: 0; }
+  @media (max-width: 520px) { .facts div { grid-template-columns: 1fr; gap: 4px; } }
+  .trigger { border-left: 4px solid var(--purple); padding: 8px 0 8px 28px; }
+  .trigger__q { margin-top: 16px; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.2; }
+
+  .journey { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .journey a { display: grid; gap: 10px; padding: 26px; border: 1px solid var(--grid); min-height: 220px; align-content: start; transition: border-color 0.2s, background 0.2s; }
+  .journey a:hover { border-color: var(--purple); background: rgba(161, 0, 255, 0.06); }
+  .journey li:first-child a { background: var(--purple); border-color: var(--purple); }
+  .journey__n { font-size: 13px; letter-spacing: 0.2em; color: var(--silver); }
+  .journey li:first-child .journey__n { color: #fff; }
+  .journey__s { font-size: clamp(30px, 3vw, 40px); margin-top: auto; padding-top: 40px; }
+  .journey__w { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; }
+  .journey__b { color: var(--silver); font-size: 16px; }
+  .journey li:first-child .journey__b { color: rgba(255, 255, 255, 0.85); }
+  @media (max-width: 960px) { .journey { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .journey { grid-template-columns: 1fr; } .journey a { min-height: 0; } .journey__s { padding-top: 12px; } }
+
+  .stage { border-top: 1px solid var(--grid); }
+  .stage__in { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 32px; padding-top: 48px; padding-bottom: 48px; }
+  .stage__in .mono { order: 2; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--silver); }
+  .stage__in h2 { color: #fff; }
+
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1.5px solid var(--ink); margin-bottom: clamp(56px, 7vw, 88px); }
+  .kpis li { display: grid; gap: 8px; padding: 24px 20px 0 0; }
+  .kpis__v { font-size: clamp(44px, 5vw, 72px); line-height: 1; color: var(--purple); }
+  .kpis__k { color: var(--grey); font-size: 16px; }
+  .kpis--dark { border-color: #fff; }
+  .kpis--dark .kpis__k { color: var(--silver); }
+  @media (max-width: 760px) { .kpis { grid-template-columns: 1fr 1fr; row-gap: 24px; } }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 96px); align-items: start; margin-bottom: clamp(56px, 7vw, 88px); }
+  @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+
+  .mat { margin-top: 20px; display: grid; gap: 18px; }
+  .mat li { display: grid; grid-template-columns: 170px 1fr 52px; gap: 16px; align-items: center; }
+  .mat__d { font-size: 16px; }
+  .mat__track { position: relative; height: 14px; background: var(--mist); }
+  .mat__now { position: absolute; inset: 0 auto 0 0; background: var(--purple); }
+  .mat__tgt { position: absolute; top: -5px; bottom: -5px; width: 0; border-left: 2px dashed var(--ink); }
+  .mat__v { font-size: 13px; color: var(--grey); text-align: right; }
+  @media (max-width: 520px) { .mat li { grid-template-columns: 1fr 48px; } .mat__d { grid-column: 1 / -1; } }
+  .legend { margin-top: 16px; display: flex; gap: 10px; align-items: center; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .sw { width: 18px; height: 8px; background: var(--purple); display: inline-block; }
+  .sw--t { background: none; width: 0; height: 14px; border-left: 2px dashed var(--ink); margin-left: 14px; }
+
+  .find { margin-top: 20px; }
+  .find li { display: grid; grid-template-columns: 82px 1fr; gap: 12px; padding: 16px 0; border-top: 1px solid var(--rule); font-size: 17px; line-height: 1.4; }
+  .sev { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 8px; height: fit-content; text-align: center; }
+  .sev--high { background: var(--purple); color: #fff; }
+  .sev--medium { background: var(--mist); color: var(--ink); }
+
+  .tablewrap { overflow-x: auto; }
+  .tbl { width: 100%; border-collapse: collapse; margin-top: 18px; min-width: 620px; }
+  .tbl th { text-align: left; font-family: var(--mono); font-weight: 400; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--grey); padding: 0 12px 14px 0; border-bottom: 1.5px solid var(--ink); }
+  .tbl td { padding: 18px 12px 18px 0; border-bottom: 1px solid var(--rule); font-size: 17px; }
+  .tbl .num { font-variant-numeric: tabular-nums; }
+  .tbl td.mono { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
+  .hi { display: inline-grid; place-items: center; min-width: 28px; height: 28px; background: var(--ink); color: #fff; font-weight: 700; }
+  .note { margin-top: 18px; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
+
+  .fta { margin-top: 18px; }
+  .fta__row { display: grid; grid-template-columns: 1fr 28px 1.5fr 200px; gap: 16px; align-items: center; padding: 20px 0; border-top: 1px solid var(--rule); }
+  .fta__f { font-weight: 700; }
+  .fta__o { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); }
+  :global(.fta__chev) { width: 9px; height: 14px; }
+  @media (max-width: 760px) { .fta__row { grid-template-columns: 1fr; gap: 4px; } .fta__row > span:nth-child(2) { display: none; } }
+  .council { margin-top: clamp(56px, 7vw, 88px); padding: 32px; background: var(--ink); color: #fff; }
+  .council dl { margin: 18px 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .council dt { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--silver); margin-bottom: 8px; }
+  .council dd { margin: 0; font-size: 17px; }
+  @media (max-width: 860px) { .council dl { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .council dl { grid-template-columns: 1fr; } }
+
+  .prc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
+  .prc__col { background: #fff; padding: 32px; display: grid; gap: 12px; align-content: start; }
+  .prc__col.is-key { background: var(--purple); color: #fff; }
+  .prc__l { font-size: 72px; line-height: 0.9; color: var(--purple); }
+  .prc__col.is-key .prc__l { color: #fff; }
+  .prc__n { font-size: 40px; line-height: 1; }
+  .prc__n span { font-family: var(--sans); font-weight: 400; font-size: 16px; color: var(--grey); }
+  .prc__col.is-key .prc__n span { color: rgba(255, 255, 255, 0.8); }
+  .prc__col ul { display: grid; gap: 8px; margin-top: 6px; font-size: 16px; }
+  .prc__col li { padding-top: 8px; border-top: 1px solid rgba(0, 0, 0, 0.1); }
+  .prc__col.is-key li { border-color: rgba(255, 255, 255, 0.25); }
+  @media (max-width: 860px) { .prc { grid-template-columns: 1fr; } }
+  .sec-wins { margin-top: 48px; }
+  .sec-wins ul { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 16px; }
+  .sec-wins li { display: grid; gap: 6px; border-left: 2px solid var(--purple); padding-left: 16px; }
+  .sec-wins .display { font-size: 32px; line-height: 1.05; }
+  @media (max-width: 760px) { .sec-wins ul { grid-template-columns: 1fr; } }
+
+  .vec { margin-top: 20px; display: grid; gap: 16px; }
+  .vec li { display: grid; grid-template-columns: 190px 1fr 28px; gap: 16px; align-items: center; }
+  .vec__track { height: 14px; background: #18181b; position: relative; }
+  .vec__bar { position: absolute; inset: 0 auto 0 0; background: var(--purple); }
+  .vec__n { text-align: right; font-size: 14px; }
+  @media (max-width: 520px) { .vec li { grid-template-columns: 1fr 28px; } .vec__t { grid-column: 1 / -1; } }
+  .chart { width: 100%; max-width: 460px; height: auto; margin-top: 16px; }
+  .chart__v { font-family: var(--display); font-weight: 600; font-size: 18px; fill: #fff; }
+  .chart__m { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; fill: var(--silver); }
+  .mon { margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; border-top: 1px solid var(--grid); padding-top: 28px; }
+  .mon dt { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--silver); margin-bottom: 8px; }
+  .mon dd { margin: 0; font-size: 17px; }
+  @media (max-width: 860px) { .mon { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .mon { grid-template-columns: 1fr; } }
+
+  .ba__row { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 16px; align-items: center; padding: 20px 0; border-top: 1px solid var(--rule); }
+  .ba__head { border-top: 0; border-bottom: 1.5px solid var(--ink); padding-top: 0; }
+  .ba__head .mono { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); }
+  .ba__k { font-size: 17px; }
+  .ba__b { font-size: clamp(22px, 2.4vw, 32px); color: var(--grey); }
+  .ba__a { font-size: clamp(22px, 2.4vw, 32px); color: var(--purple); }
+
+  .close__in { display: grid; gap: 28px; padding-top: clamp(88px, 12vw, 160px); padding-bottom: clamp(88px, 12vw, 160px); }
+  .close__cta { display: flex; flex-wrap: wrap; gap: 14px; }
+</style>
