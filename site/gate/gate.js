@@ -83,7 +83,19 @@ export async function gate(request, env, next) {
 
   if (PUBLIC.some((re) => re.test(url.pathname))) return next();
 
-  if (!secret) return page('This site is locked. Its password has not been set up yet.', '/', 503);
+  if (!secret) {
+    // Names only, never values: shows whether the secret reached the running site.
+    const names = Object.keys(env || {}).filter((k) => /^[A-Z0-9_]+$/i.test(k)).sort();
+    const seen = names.length ? names.join(', ') : 'none';
+    return page(
+      `This site is locked. Its password has not been set up yet.<br><br>` +
+        `<span style="color:#a1a1aa;font-size:13px">SITE_PASSWORD is not visible to the running site. ` +
+        `Settings this site can see: ${seen}. Add SITE_PASSWORD as a Secret under the Worker's Settings, ` +
+        `Variables and Secrets (not under Build), then deploy.</span>`,
+      '/',
+      503,
+    );
+  }
 
   const token = await sign(secret, 'acnr.ai:v1');
   const cookieBase = `${COOKIE}=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0`;
