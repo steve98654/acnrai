@@ -25,7 +25,7 @@ Partner marks: monochrome Simple Icons (Google, Anthropic) and the deck's OpenAI
 
 ## Password
 
-The whole site sits behind a password gate (`gate/gate.js`). It runs on either Cloudflare product:
+The password gate (`gate/gate.js`) is currently OFF. Set `PASSWORD_ENABLED = true` in that file to turn it back on. It runs on either Cloudflare product:
 
 - **Workers** (static assets): `wrangler.jsonc` points at `worker/index.js`, which runs the gate before
   every file. `run_worker_first` makes sure no page is served without it. The `name` in `wrangler.jsonc`
