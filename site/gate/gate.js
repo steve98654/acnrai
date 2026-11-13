@@ -9,6 +9,9 @@
 // After a correct password, a signed cookie keeps the visitor signed in for
 // 30 days. Changing SITE_PASSWORD signs everyone out. /logout clears the cookie.
 
+// Switch: false serves the site openly. Set to true to turn the password back on.
+export const PASSWORD_ENABLED = false;
+
 const COOKIE = 'acnr_auth';
 const MAX_AGE = 60 * 60 * 24 * 30;
 const PUBLIC = [/^\/fonts\//, /^\/favicon\.svg$/];
@@ -78,6 +81,7 @@ button:hover{background:#fff;color:#000}
 // Shared by the Workers entry (worker/index.js) and the Pages middleware
 // (functions/_middleware.js). `next` returns the static file response.
 export async function gate(request, env, next) {
+  if (!PASSWORD_ENABLED) return next();
   const url = new URL(request.url);
   const secret = env.SITE_PASSWORD;
 
