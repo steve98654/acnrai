@@ -25,7 +25,13 @@ Partner marks: monochrome Simple Icons (Google, Anthropic) and the deck's OpenAI
 
 ## Password
 
-The whole site sits behind a password gate (`functions/_middleware.js`, a Cloudflare Pages Function).
-Set `SITE_PASSWORD` as an encrypted secret in Cloudflare: Pages project, Settings, Variables and Secrets,
-for Production (and Preview if wanted), then redeploy. Until it is set the site shows a locked page.
-Visitors stay signed in for 30 days; changing the password signs everyone out; `/logout` signs out.
+The whole site sits behind a password gate (`gate/gate.js`). It runs on either Cloudflare product:
+
+- **Workers** (static assets): `wrangler.jsonc` points at `worker/index.js`, which runs the gate before
+  every file. `run_worker_first` makes sure no page is served without it. The `name` in `wrangler.jsonc`
+  must match the Worker's name in the dashboard.
+- **Pages**: `functions/_middleware.js` runs the same gate.
+
+Set `SITE_PASSWORD` as a runtime **Secret** (Worker or Pages project, Settings, Variables and Secrets),
+not as a build variable, then redeploy. Until it is set the site shows a locked page. Visitors stay
+signed in for 30 days; changing the password signs everyone out; `/logout` signs out.
