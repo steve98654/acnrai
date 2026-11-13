@@ -23,6 +23,7 @@ export const nav = [
   { href: '/#govern', label: 'Govern' },
   { href: '/#assure', label: 'Red team' },
   { href: '/usecases', label: 'Use cases' },
+  { href: '/example', label: 'Example' },
   { href: '/history', label: 'History' },
   { href: '/#start', label: 'Start', cta: true },
 ];
