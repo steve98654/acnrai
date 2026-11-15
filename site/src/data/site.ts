@@ -285,9 +285,10 @@ export const facultyFacts = [
   { k: 'CBRNE', v: 'Misuse evaluations, plus systemic harms such as manipulation and radicalisation' },
 ];
 
-// Closing section contacts. A contact shows once it has a name and an email.
-// The "Book 30 minutes" button mails BOOK_EMAIL, or the first complete contact.
-export const contacts: { firm: string; name?: string; title?: string; email?: string }[] = [
-  { firm: 'Accenture', name: 'Kedus Bekele', email: 'kedus.bekele@accenture.com' },
+// Closing section contacts. Email addresses are never stored or shipped in
+// plain text: `mail` is base64 of the reversed address, decoded in the browser
+// on click, and `mailImg` is a rendered image of the address for display.
+// Regenerate the image with: node scripts/email-image.mjs <address> <out.png>
+export const contacts: { firm: string; name?: string; title?: string; mail?: string; mailImg?: string }[] = [
+  { firm: 'Accenture', name: 'Kedus Bekele', mail: 'bW9jLmVydXRuZWNjYUBlbGVrZWIuc3VkZWs=', mailImg: '/contact/kedus.png' },
 ];
-export const BOOK_EMAIL = '';

@@ -8,7 +8,6 @@ import {
   maturityLevels, heatmap, findings, findingToAction, lifecycle, operate, prc, security,
   attacks, cadence, roadmap, nextSteps,
   contacts,
-  BOOK_EMAIL,
 } from '../data/site';
 
 // Radar geometry (current state assessment, illustrative)
@@ -32,11 +31,9 @@ const atk = attacks.map((t, i) => {
   return { t, x: 300 + 225 * Math.cos(a), y: 170 - 125 * Math.sin(a) };
 });
 const weeks = [1, 2, 3, 4];
-const ready = contacts.filter((c) => c.name && c.email);
-const bookTo = BOOK_EMAIL || ready[0]?.email;
-const bookHref = bookTo
-  ? `mailto:${bookTo}?subject=${encodeURIComponent('Book 30 minutes: Responsible AI')}&body=${encodeURIComponent('I would like to book 30 minutes to discuss a first evaluation.')}`
-  : null;
+const ready = contacts.filter((c) => c.name && c.mail);
+const book = ready[0];
+const bookQuery = `?subject=${encodeURIComponent('Book 30 minutes: Responsible AI')}&body=${encodeURIComponent('I would like to book 30 minutes to discuss a first evaluation.')}`;
 ---
 <Base>
   <!-- ============ HERO ============ -->
@@ -450,15 +447,15 @@ const bookHref = bookTo
           should prove. One way to begin: a <span class="close__em">two week Claude Fable rapid evaluation</span>.
         </p>
       </div>
-      {(bookHref || ready.length > 0) && (
+      {ready.length > 0 && (
         <div class="contacts reveal">
-          {bookHref && <a class="btn btn--primary contacts__book" href={bookHref}>Book 30 minutes <Chevron color="currentColor" /></a>}
+          {book && <a class="btn btn--primary contacts__book" href="#start" data-m={book.mail} data-q={bookQuery}>Book 30 minutes <Chevron color="currentColor" /></a>}
           {ready.length > 0 && (
             <dl class="contacts__list">
               {ready.map((c) => (
                 <div>
                   <dt class="mono">{c.firm}</dt>
-                  <dd>{c.name}{c.title && <span class="muted">, {c.title}</span>}<br /><a href={`mailto:${c.email}`}>{c.email}</a></dd>
+                  <dd>{c.name}{c.title && <span class="muted">, {c.title}</span>}<br /><a class="contacts__mail" href="#start" data-m={c.mail} aria-label={`Email ${c.name}`}>{c.mailImg && <img src={c.mailImg} alt={`Email ${c.name}`} width="215" height="24" />}</a></dd>
                 </div>
               ))}
             </dl>
@@ -467,6 +464,16 @@ const bookHref = bookTo
       )}
     </div>
   </section>
+  <script is:inline>
+    // Build mailto links only on click, so the address never appears in the page source.
+    document.querySelectorAll('[data-m]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var addr = atob(a.getAttribute('data-m')).split('').reverse().join('');
+        window.location.href = 'mailto:' + addr + (a.getAttribute('data-q') || '');
+      });
+    });
+  </script>
 </Base>
 
 <style>
@@ -706,8 +713,9 @@ const bookHref = bookTo
   .contacts { display: flex; flex-wrap: wrap; align-items: center; gap: 32px 64px; border-top: 1px solid var(--grid); padding-top: 28px; }
   .contacts__list { display: flex; flex-wrap: wrap; gap: 24px 64px; margin: 0; }
   .contacts__list div { display: grid; gap: 6px; }
-  .contacts dd a { color: var(--silver); border-bottom: 1px solid var(--purple); }
-  .contacts dd a:hover { color: #fff; }
+  .contacts__mail { display: inline-block; margin-top: 4px; padding-bottom: 3px; border-bottom: 1px solid var(--purple); }
+  .contacts__mail img { display: block; height: 24px; width: auto; opacity: 0.9; transition: opacity 0.2s; }
+  .contacts__mail:hover img { opacity: 1; }
   .contacts dt { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--silver); }
   .contacts dd { margin: 0; font-size: 18px; }
 </style>
