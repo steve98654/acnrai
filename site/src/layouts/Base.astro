@@ -41,7 +41,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         </a>
         <nav aria-label="Sections">
           <ul class="nav__links">
-            {nav.map((n) => <li><a href={n.href} class={n.cta ? 'is-cta' : ''} aria-current={Astro.url.pathname.replace(/\/$/, '') === n.href ? 'page' : undefined}>{n.short ? <><span class="nav__full">{n.label}</span><span class="nav__short" aria-hidden="true">{n.short}</span></> : n.label}</a></li>)}
+            {nav.map((n) => <li><a href={n.href} class={n.cta ? 'is-cta' : ''} aria-current={(Astro.url.pathname.replace(/\/$/, '') || '/') === n.href ? 'page' : undefined}>{n.short ? <><span class="nav__full">{n.label}</span><span class="nav__short" aria-hidden="true">{n.short}</span></> : n.label}</a></li>)}
           </ul>
         </nav>
       </div>
@@ -93,11 +93,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   .nav__links a[aria-current="page"] { color: #fff; }
   .nav__links a.is-cta { color: #fff; border-bottom: 1.5px solid var(--purple); }
   .nav__short { display: none; }
-  @media (max-width: 1180px) {
-    .nav__links li:nth-child(-n + 4) { display: none; }
+  .nav__links a { white-space: nowrap; }
+  @media (max-width: 1340px) {
+    .nav__links li:nth-child(n + 2):nth-child(-n + 5) { display: none; }
+  }
+  @media (max-width: 900px) {
+    .nav__links li:nth-child(n + 7):nth-child(-n + 9) { display: none; }
   }
   @media (max-width: 760px) {
-    .nav__links li:not(:nth-child(5)):not(:last-child) { display: none; }
+    .nav__links li:not(:first-child):not(:nth-child(6)):not(:last-child) { display: none; }
     .nav__full { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     .nav__short { display: inline !important; }
     .nav__links { gap: 16px; letter-spacing: 0.12em; }
@@ -105,6 +109,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     .nav__brand { letter-spacing: 0.16em; gap: 6px; }
     .nav__in { gap: 12px; }
   }
+  @media (max-width: 480px) {
+    .nav__links li:first-child { display: none; }
+  }
+
 
   .foot { background: var(--night); border-top: 1px solid var(--grid); color: var(--grey); }
   .foot__in { padding-top: 40px; padding-bottom: 48px; display: grid; gap: 16px; grid-template-columns: 1fr; }

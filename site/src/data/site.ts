@@ -18,6 +18,7 @@ export const meta = {
 };
 
 export const nav = [
+  { href: '/', label: 'Home' },
   { href: '/#offer', label: 'Offer' },
   { href: '/#assess', label: 'Assess' },
   { href: '/#govern', label: 'Govern' },
