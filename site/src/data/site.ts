@@ -18,6 +18,7 @@ export const meta = {
 };
 
 export const nav = [
+  { href: '/onepager', label: 'One Pager' },
   { href: '/#offer', label: 'Offer' },
   { href: '/#assess', label: 'Assess' },
   { href: '/#govern', label: 'Govern' },
@@ -25,8 +26,7 @@ export const nav = [
   { href: '/usecases', label: 'Use cases' },
   { href: '/example', label: 'Example' },
   { href: '/history', label: 'History' },
-  { href: '/onepager', label: 'One Pager' },
-  { href: '/#start', label: 'Start', cta: true },
+  { href: '/#start', label: 'Point of Contact', short: 'Contact', cta: true },
 ];
 
 export const moment = [
