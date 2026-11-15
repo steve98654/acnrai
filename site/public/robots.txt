@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://acnr.ai/sitemap.xml

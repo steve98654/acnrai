@@ -7,6 +7,8 @@ import {
   PRC, PRC_FULL, moment, partners, offer, brings, dimensions, outputs, rapidEval, loop,
   maturityLevels, heatmap, findings, findingToAction, lifecycle, operate, prc, security,
   attacks, cadence, roadmap, nextSteps,
+  contacts,
+  BOOK_EMAIL,
 } from '../data/site';
 
 // Radar geometry (current state assessment, illustrative)
@@ -30,6 +32,11 @@ const atk = attacks.map((t, i) => {
   return { t, x: 300 + 225 * Math.cos(a), y: 170 - 125 * Math.sin(a) };
 });
 const weeks = [1, 2, 3, 4];
+const ready = contacts.filter((c) => c.name && c.email);
+const bookTo = BOOK_EMAIL || ready[0]?.email;
+const bookHref = bookTo
+  ? `mailto:${bookTo}?subject=${encodeURIComponent('Book 30 minutes: Responsible AI')}&body=${encodeURIComponent('I would like to book 30 minutes to discuss a first evaluation.')}`
+  : null;
 ---
 <Base>
   <!-- ============ HERO ============ -->
@@ -39,6 +46,7 @@ const weeks = [1, 2, 3, 4];
       <div class="hero__copy reveal">
         <p class="kicker">ACN offerings / Responsible AI and red teaming</p>
         <h1 class="display h1" id="hero-title">Responsible AI,<br />operationalised.</h1>
+        <p class="display hero__sub">Evidence your board can act on in two weeks.</p>
         <p class="lede hero__lede">
           Assess. Govern. Red team. Monitor.<br />
           One partner from first evaluation to continuous assurance.
@@ -442,10 +450,21 @@ const weeks = [1, 2, 3, 4];
           should prove. One way to begin: a <span class="close__em">two week Claude Fable rapid evaluation</span>.
         </p>
       </div>
-      <dl class="contacts reveal">
-        <div><dt class="mono">Accenture</dt><dd>[Name, title, email]</dd></div>
-        <div><dt class="mono">Faculty</dt><dd>[Name, title, email]</dd></div>
-      </dl>
+      {(bookHref || ready.length > 0) && (
+        <div class="contacts reveal">
+          {bookHref && <a class="btn btn--primary contacts__book" href={bookHref}>Book 30 minutes <Chevron color="currentColor" /></a>}
+          {ready.length > 0 && (
+            <dl class="contacts__list">
+              {ready.map((c) => (
+                <div>
+                  <dt class="mono">{c.firm}</dt>
+                  <dd>{c.name}{c.title && <span class="muted">, {c.title}</span>}<br /><a href={`mailto:${c.email}`}>{c.email}</a></dd>
+                </div>
+              ))}
+            </dl>
+          )}
+        </div>
+      )}
     </div>
   </section>
 </Base>
@@ -456,7 +475,9 @@ const weeks = [1, 2, 3, 4];
   .hero { position: relative; min-height: 100svh; display: flex; overflow: hidden; }
   .hero__in { position: relative; display: flex; flex-direction: column; justify-content: space-between; padding-top: clamp(96px, 14vh, 160px); padding-bottom: 32px; gap: 36px; }
   .hero__copy { display: grid; gap: 22px; max-width: 980px; }
+  .hero__sub { font-size: clamp(22px, 2.3vw, 32px); line-height: 1.15; color: #fff; margin-top: -6px; }
   .hero__lede { color: var(--silver); }
+  @media (max-width: 760px) and (max-height: 720px) { .hero__lede { display: none; } }
   .hero__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 4px; }
   :global(.hero__chev) { position: absolute; right: clamp(-80px, 5vw, 110px); bottom: 14vh; height: clamp(300px, 56vh, 620px); width: auto; }
   @media (max-width: 900px) { :global(.hero__chev) { opacity: 0.32; right: -60px; } }
@@ -681,8 +702,11 @@ const weeks = [1, 2, 3, 4];
   .close__in .h1 { margin: 24px 0 28px; }
   .close__em { color: #fff; border-bottom: 1.5px solid var(--purple); }
   :global(.close__chev) { top: 22%; bottom: auto; height: clamp(300px, 46vh, 520px); }
-  .contacts { display: flex; flex-wrap: wrap; gap: 24px 64px; margin: 0; border-top: 1px solid var(--grid); padding-top: 24px; }
-  .contacts div { display: grid; gap: 6px; }
+  .contacts { display: flex; flex-wrap: wrap; align-items: center; gap: 32px 64px; border-top: 1px solid var(--grid); padding-top: 28px; }
+  .contacts__list { display: flex; flex-wrap: wrap; gap: 24px 64px; margin: 0; }
+  .contacts__list div { display: grid; gap: 6px; }
+  .contacts dd a { color: var(--silver); border-bottom: 1px solid var(--purple); }
+  .contacts dd a:hover { color: #fff; }
   .contacts dt { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--silver); }
   .contacts dd { margin: 0; font-size: 18px; }
 </style>
