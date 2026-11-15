@@ -55,9 +55,8 @@
   \node[anchor=west,inner sep=0,text=#1,scale=1.5] at (0.67,1.35) {$\mathit{trust}$};
   \node[anchor=west,inner sep=0,text=#1,scale=1.5] at (-0.03,-1.48) {$\mathit{risk}$};
   \node[anchor=west,inner sep=0,text=acnGrey,scale=2.2] at (0.95,-0.03) {$\mathrm{d}\mathit{AI}$};}
-\newcommand{\markI}[1]{% 01I co-brand lockup: the integral alone separates the two names
+\newcommand{\markI}[1]{% 01I co-brand lockup: the integral alone separates the two names and carries the only accent
   \node[anchor=base east,inner sep=0] (a) at (-0.45,-0.22) {\acnword{#1}};
-  \fill[acnPurple] \chevpath{($(a.base east)+(-0.36,0.43)$)}{0.2};
   \intmark{(0,0)}{2.9}{0.48}{#1}
   \node[anchor=base west,inner sep=0] at (0.45,-0.22) {\facword[10]{#1}};}
 
