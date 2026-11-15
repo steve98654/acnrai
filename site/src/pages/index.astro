@@ -38,9 +38,9 @@ const bookQuery = `?subject=${encodeURIComponent('Book 30 minutes: Responsible A
 <Base>
   <!-- ============ HERO ============ -->
   <section class="hero grid-bg" id="top" aria-labelledby="hero-title">
-    <Chevron class="hero__chev" />
     <div class="wrap hero__in">
-      <div class="hero__copy reveal">
+      <div class="hero__top">
+        <div class="hero__copy reveal">
         <p class="kicker">ACN offerings / Responsible AI and red teaming</p>
         <h1 class="display h1" id="hero-title">Responsible AI,<br />operationalised.</h1>
         <p class="display hero__sub">Evidence your board can act on in two weeks.</p>
@@ -53,11 +53,13 @@ const bookQuery = `?subject=${encodeURIComponent('Book 30 minutes: Responsible A
           <a class="btn" href="#offer">See the offer</a>
         </div>
       </div>
+      <Chevron class="hero__mark" />
+      </div>
       <div class="hero__gao">
         <p class="hero__with mono">In partnership with Google, Anthropic and OpenAI</p>
         <ul class="hero__logos">
           {partners.map((p) => (
-            <li class="hero__p"><Logo name={p.logo} size={44} /><span class="display">{p.name}</span></li>
+            <li class="hero__p"><Logo name={p.logo} size={60} /><span class="display">{p.name}</span></li>
           ))}
         </ul>
         <a class="hero__hist mono" href="/history">Our GAO Partnerships history <Chevron color="currentColor" /></a>
@@ -478,11 +480,14 @@ const bookQuery = `?subject=${encodeURIComponent('Book 30 minutes: Responsible A
 
 <style>
   #csa-title { font-size: clamp(30px, 4vw, 52px); }
-  #hero-title { font-size: calc(clamp(48px, 8.4vw, 116px) - 8pt); }
+  #hero-title { font-size: clamp(40px, 6.2vw, 88px); }
   /* ---------- hero ---------- */
   .hero { position: relative; min-height: 100svh; display: flex; overflow: hidden; }
   .hero__in { position: relative; display: flex; flex-direction: column; justify-content: space-between; padding-top: clamp(96px, 14vh, 160px); padding-bottom: 32px; gap: 36px; }
-  .hero__copy { display: grid; gap: 22px; max-width: 980px; }
+  .hero__top { display: flex; align-items: center; gap: clamp(48px, 7vw, 120px); }
+  .hero__copy { position: relative; display: grid; gap: 22px; }
+  :global(.hero__mark) { flex: none; height: clamp(260px, 44vh, 440px); width: auto; }
+  @media (max-width: 900px) { :global(.hero__mark) { position: absolute; right: -60px; top: 18%; opacity: 0.32; } }
   .hero__sub { font-size: clamp(22px, 2.3vw, 32px); line-height: 1.15; color: #fff; margin-top: -6px; }
   .hero__lede { color: var(--silver); }
   @media (max-width: 760px) and (max-height: 720px) { .hero__lede { display: none; } }
@@ -492,11 +497,12 @@ const bookQuery = `?subject=${encodeURIComponent('Book 30 minutes: Responsible A
   .hero__gao { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 16px 40px; border-top: 1px solid var(--grid); padding-top: 22px; }
   .hero__with { grid-column: 1 / -1; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--silver); }
   .hero__logos { display: flex; flex-wrap: wrap; align-items: center; gap: 20px clamp(32px, 5vw, 72px); }
-  .hero__p { display: inline-flex; align-items: center; gap: 16px; color: #fff; font-size: clamp(26px, 2.8vw, 38px); line-height: 1; }
+  .hero__p { display: inline-flex; align-items: center; gap: 18px; color: #fff; font-size: clamp(30px, 3.6vw, 52px); line-height: 1; }
   .hero__hist { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); padding-bottom: 6px; border-bottom: 1.5px solid var(--purple); white-space: nowrap; transition: color 0.2s; }
   .hero__hist:hover { color: #fff; }
+  @media (max-width: 1100px) { .hero__gao { grid-template-columns: 1fr; } .hero__hist { justify-self: start; } }
   .hero__hist :global(svg) { width: 7px; height: 11px; }
-  @media (max-width: 760px) { .hero__in { padding-top: 84px; gap: 28px; } .hero__gao { grid-template-columns: 1fr; } .hero__p :global(svg) { width: 32px; height: 32px; } .hero__hist { justify-self: start; } }
+  @media (max-width: 760px) { .hero__in { padding-top: 84px; gap: 28px; } .hero__gao { grid-template-columns: 1fr; } .hero__p :global(svg) { width: 40px; height: 40px; } .hero__hist { justify-self: start; } }
 
   /* ---------- shared layout ---------- */
   .cols3 { display: grid; gap: clamp(32px, 4vw, 56px); grid-template-columns: repeat(3, 1fr); }
