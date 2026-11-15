@@ -1,0 +1,83 @@
+% Accenture x Faculty co-brand marks (concept 01 "chevron crossbar").
+% Original vector drawings for internal review. Not official artwork of either
+% firm; any external use needs sign-off from both brand teams.
+%
+% Build one file:  pdflatex -jobname=<name> "\def\V{A}\def\S{dark}\input{logos.tex}"
+%   \V = A (master lockup), D (integral stem), E (risk to trust), I (co-brand lockup)
+%   \S = dark | light | white | black   (white/black = transparent background)
+% build.sh builds every combination and exports PDF, SVG and PNG.
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage[letterspace=120]{microtype}
+\usetikzlibrary{calc,backgrounds}
+\renewcommand{\familydefault}{\sfdefault}
+
+\definecolor{acnPurple}{HTML}{A100FF}
+\definecolor{acnNight}{HTML}{09090B}
+\definecolor{acnGrey}{HTML}{71717A}
+
+% House ">" (same geometry as the decks), bottom-left #1, height #2
+\def\chevpath#1#2{($#1+(0,#2)$) -- ($#1+(0.62*#2,0.5*#2)$) -- #1 -- ($#1+(0,0.205*#2)$)
+   -- ($#1+(0.365*#2,0.5*#2)$) -- ($#1+(0,0.795*#2)$) -- cycle}
+% The same ">" grown by a 4.5% keyline (exact miter offset), clockwise
+\def\chevgap#1#2{($#1+(-0.0450*#2,1.0941*#2)$) -- ($#1+(0.6917*#2,0.5000*#2)$)
+   -- ($#1+(-0.0450*#2,-0.0941*#2)$) -- ($#1+(-0.0450*#2,0.2265*#2)$)
+   -- ($#1+(0.2934*#2,0.5000*#2)$) -- ($#1+(-0.0450*#2,0.7735*#2)$) -- cycle}
+% Clip to box #1--#2 minus the keyline area (a real gap, so transparent versions work)
+\newcommand{\gapclip}[4]{\clip #3 rectangle #4 \chevgap{#1}{#2};}
+
+% Tapered S stem (Faculty-style, redrawn). Unit box 2 x 1.5.
+\def\stempath{(0,-0.018) -- (0.5,-0.03) .. controls (1.045,-0.03) and (1.045,1.47) .. (1.5,1.47)
+   -- (2,1.482) -- (2,1.518) -- (1.5,1.53) .. controls (0.955,1.53) and (0.955,0.03) .. (0.5,0.03)
+   -- (0,0.018) -- cycle}
+
+\newcommand{\facword}[2][11]{{\fontsize{#1}{#1}\selectfont\color{#2}\textls[260]{FACULTY}}}
+\newcommand{\acnword}[2][14]{{\fontsize{#1}{#1}\selectfont\bfseries\color{#2}accenture}}
+
+% Integral stem with chevron crossbar. #1 centre, #2 glyph scale, #3 chevron height, #4 fg
+\newcommand{\intmark}[4]{%
+  \begin{scope}\gapclip{($#1+(-0.24*#3,-0.5*#3)$)}{#3}{($#1+(-0.25*#2,-0.32*#2)$)}{($#1+(0.25*#2,0.32*#2)$)}
+    \node[inner sep=0,text=#4,scale=#2] at #1 {$\displaystyle\int$};
+  \end{scope}
+  \fill[acnPurple] \chevpath{($#1+(-0.24*#3,-0.5*#3)$)}{#3};}
+
+% ---- the four marks, #1 = foreground colour ----
+\newcommand{\markA}[1]{% 01A master lockup
+  \begin{scope}\gapclip{(0.6715,0.3)}{0.9}{(0,-0.05)}{(2,1.55)}\fill[#1] \stempath;\end{scope}
+  \fill[acnPurple] \chevpath{(0.6715,0.3)}{0.9};
+  \node[anchor=base,inner sep=0] at (1.0,-0.83) {\facword{#1}};}
+\newcommand{\markD}[1]{% 01D integral stem
+  \intmark{(0,0)}{6.2}{1.0}{#1}}
+\newcommand{\markE}[1]{% 01E from risk to trust
+  \intmark{(0,0)}{6.2}{1.0}{#1}
+  \node[anchor=west,inner sep=0,text=#1,scale=1.5] at (0.67,1.35) {$\mathit{trust}$};
+  \node[anchor=west,inner sep=0,text=#1,scale=1.5] at (-0.03,-1.48) {$\mathit{risk}$};
+  \node[anchor=west,inner sep=0,text=acnGrey,scale=2.2] at (0.95,-0.03) {$\mathrm{d}\mathit{AI}$};}
+\newcommand{\markI}[1]{% 01I co-brand lockup
+  \node[anchor=base east,inner sep=0] (a) at (-0.75,-0.22) {\acnword{#1}};
+  \fill[acnPurple] \chevpath{($(a.base east)+(-0.36,0.43)$)}{0.2};
+  \draw[#1,line width=0.5pt] (-0.48,-0.65) -- (-0.48,0.65);
+  \intmark{(0,0)}{2.9}{0.48}{#1}
+  \node[anchor=base west,inner sep=0] at (0.45,-0.22) {\facword[10]{#1}};}
+
+\def\fgcol{white}\def\bgcol{}
+\def\tmp{light}\ifx\S\tmp\def\fgcol{black}\def\bgcol{white}\fi
+\def\tmp{dark}\ifx\S\tmp\def\fgcol{white}\def\bgcol{acnNight}\fi
+\def\tmp{black}\ifx\S\tmp\def\fgcol{black}\fi
+
+\begin{document}
+\begin{tikzpicture}[x=14mm,y=14mm]
+  \begin{scope}[local bounding box=mark]
+    \csname mark\V\endcsname{\fgcol}
+  \end{scope}
+  \ifx\bgcol\empty
+    \useasboundingbox ($(mark.south west)+(-1mm,-1mm)$) rectangle ($(mark.north east)+(1mm,1mm)$);
+  \else
+    \begin{scope}[on background layer]
+      \fill[\bgcol] ($(mark.south west)+(-9mm,-9mm)$) rectangle ($(mark.north east)+(9mm,9mm)$);
+    \end{scope}
+  \fi
+\end{tikzpicture}
+\end{document}
