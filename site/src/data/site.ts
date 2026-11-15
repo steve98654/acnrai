@@ -95,7 +95,7 @@ export const outputs = ['AI system register', 'Maturity profile', 'Prioritised r
 
 export const rapidEval = [
   { when: 'Days 1 to 2', title: 'Scope', body: 'Use cases, policies, risk appetite.' },
-  { when: 'Days 3 to 5', title: 'Generate', body: 'Fable builds test suites from your policies.' },
+  { when: 'Days 3 to 5', title: 'Generate', body: 'Accent rapid eval builds test suites from your policies.' },
   { when: 'Week 2', title: 'Run and grade', body: 'Automated runs, expert calibrated grading.' },
   { when: 'Week 2', title: 'Read out', body: 'Scored findings and priority actions.' },
 ];
