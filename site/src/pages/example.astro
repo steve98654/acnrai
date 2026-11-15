@@ -19,7 +19,7 @@ const maxVec = Math.max(...redTeam.vectors.map((v) => v.found), 1);
     <Mark name="integral" class="top__chev" />
     <div class="wrap top__in">
       <p class="kicker reveal">Worked example / Fictitious company</p>
-      <h1 class="display h1 reveal" id="ex-title">{firm.name}.<br />The full journey.</h1>
+      <h1 class="display h1 h1--page reveal" id="ex-title">{firm.name}.<br />The full journey.</h1>
       <p class="lede reveal">
         One firm taken through every part of the offer, from the first inventory to live monitoring. {firm.name} is
         invented, and so are all of its numbers and findings.
@@ -293,7 +293,7 @@ const maxVec = Math.max(...redTeam.vectors.map((v) => v.found), 1);
 
   .kpis { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1.5px solid var(--ink); margin-bottom: clamp(56px, 7vw, 88px); }
   .kpis li { display: grid; gap: 8px; padding: 24px 20px 0 0; }
-  .kpis__v { font-size: clamp(44px, 5vw, 72px); line-height: 1; color: var(--purple); }
+  .kpis__v { font-size: clamp(36px, 4vw, 52px); line-height: 1; color: var(--purple); }
   .kpis__k { color: var(--grey); font-size: 16px; }
   .kpis--dark { border-color: #fff; }
   .kpis--dark .kpis__k { color: var(--silver); }
@@ -345,7 +345,7 @@ const maxVec = Math.max(...redTeam.vectors.map((v) => v.found), 1);
   .prc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
   .prc__col { background: #fff; padding: 32px; display: grid; gap: 12px; align-content: start; }
   .prc__col.is-key { background: var(--purple); color: #fff; }
-  .prc__l { font-size: 72px; line-height: 0.9; color: var(--purple); }
+  .prc__l { font-size: 56px; line-height: 0.9; color: var(--purple); }
   .prc__col.is-key .prc__l { color: #fff; }
   .prc__n { font-size: 40px; line-height: 1; }
   .prc__n span { font-family: var(--sans); font-weight: 400; font-size: 16px; color: var(--grey); }
