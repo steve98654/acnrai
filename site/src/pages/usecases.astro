@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Chevron from '../components/Chevron.astro';
+import Mark from '../components/Mark.astro';
 import { offerings, useCases } from '../data/usecases';
 const label = Object.fromEntries(offerings.map((o) => [o.key, o]));
 ---
@@ -9,7 +10,7 @@ const label = Object.fromEntries(offerings.map((o) => [o.key, o]));
   description="A gallery of illustrative use cases for current state assessment, governance and red teaming."
 >
   <section class="top grid-bg" aria-labelledby="uc-title">
-    <Chevron class="top__chev" />
+    <Mark name="integral" class="top__chev" />
     <div class="wrap top__in">
       <p class="kicker reveal">Use cases / Gallery</p>
       <h1 class="display h1 reveal" id="uc-title">What it looks<br />like in practice.</h1>

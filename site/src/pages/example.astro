@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Chevron from '../components/Chevron.astro';
+import Mark from '../components/Mark.astro';
 import {
   firm, journey, inventory, maturity, rapidEval, topFindings, actions, council,
   prcBuild, securityWins, redTeam, openHigh, monitors, beforeAfter,
@@ -15,7 +16,7 @@ const maxVec = Math.max(...redTeam.vectors.map((v) => v.found), 1);
 >
   <!-- Hero -->
   <section class="top grid-bg" aria-labelledby="ex-title">
-    <Chevron class="top__chev" />
+    <Mark name="integral" class="top__chev" />
     <div class="wrap top__in">
       <p class="kicker reveal">Worked example / Fictitious company</p>
       <h1 class="display h1 reveal" id="ex-title">{firm.name}.<br />The full journey.</h1>

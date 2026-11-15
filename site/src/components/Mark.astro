@@ -1,0 +1,13 @@
+---
+// Accenture × Faculty co-brand marks (see /Logos). White artwork with the
+// purple chevron, on transparent, for dark backgrounds.
+interface Props { name: 'cobrand' | 'integral' | 'risk-to-trust' | 'master'; class?: string; alt?: string; style?: string }
+const { name, class: cls, alt = '', style } = Astro.props;
+const dims = {
+  cobrand: [175.932, 79.325],
+  integral: [128.692, 163.143],
+  'risk-to-trust': [145.378, 163.143],
+  master: [85.039, 100.12],
+}[name];
+---
+<img class={cls} src={`/brand/${name}.svg`} width={Math.round(dims[0])} height={Math.round(dims[1])} alt={alt} aria-hidden={alt ? undefined : 'true'} decoding="async" style={style} />

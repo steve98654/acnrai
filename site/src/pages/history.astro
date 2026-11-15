@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Chevron from '../components/Chevron.astro';
+import Mark from '../components/Mark.astro';
 import Logo from '../components/Logo.astro';
 import { history, historyQuote, facultyFacts, FACULTY_EVALS_URL } from '../data/site';
 ---
@@ -9,7 +10,7 @@ import { history, historyQuote, facultyFacts, FACULTY_EVALS_URL } from '../data/
   description="Evaluation and red teaming engagements across our GAO Partnerships: Google, Anthropic and OpenAI."
 >
   <section class="top grid-bg" aria-labelledby="hist-title">
-    <Chevron class="top__chev" />
+    <Mark name="integral" class="top__chev" />
     <div class="wrap top__in">
       <p class="kicker reveal">History / GAO Partnerships</p>
       <h1 class="display h1 reveal" id="hist-title">Tested with<br />the labs.</h1>

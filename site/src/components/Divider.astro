@@ -1,11 +1,12 @@
 ---
 // Section divider, as in the deck: black, faint grid, "SECTION 0x / 05", oversized chevron.
 import Chevron from './Chevron.astro';
+import Mark from './Mark.astro';
 interface Props { n: string; title: string; sub: string; id?: string }
 const { n, title, sub, id } = Astro.props;
 ---
 <section class="div grid-bg" id={id} aria-labelledby={`div-${n}`}>
-  <Chevron class="div__chev" />
+  <Mark name="integral" class="div__chev" />
   <div class="wrap div__in">
     <p class="mono div__num reveal">Section {n} / 05</p>
     <div class="reveal">

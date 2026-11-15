@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Chevron from '../components/Chevron.astro';
+import Mark from '../components/Mark.astro';
 import { meta, nav, DRAFT } from '../data/site';
 
 interface Props { title?: string; description?: string }
@@ -37,7 +38,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <header class="nav" data-nav>
       <div class="nav__in wrap">
         <a class="nav__brand mono" href="/#top" aria-label="Accenture and Faculty, home">
-          ACCENTURE <Chevron class="nav__chev" /> FACULTY
+          <Mark name="cobrand" class="nav__logo" />
         </a>
         <nav aria-label="Sections">
           <ul class="nav__links">
@@ -53,7 +54,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 
     <footer class="foot">
       <div class="wrap foot__in">
-        <p class="mono foot__brand"><span class="nowrap">ACCENTURE <Chevron class="nav__chev" /> FACULTY</span> /&nbsp; RESPONSIBLE AI / GAO PARTNERSHIPS</p>
+        <p class="mono foot__brand"><Mark name="cobrand" class="foot__logo" alt="Accenture and Faculty" /><span>Responsible AI / GAO Partnerships</span></p>
         <p class="foot__note">
           Two weeks is a target for a standard scope. An evaluation gives evidence on the systems tested; it is not a
           certification. Partner names and marks belong to their owners and are used to show model coverage.
@@ -84,9 +85,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 
   .nav { position: fixed; inset: 0 0 auto 0; z-index: 50; transition: background 0.3s var(--ease), border-color 0.3s var(--ease); border-bottom: 1px solid transparent; }
   .nav.is-solid { background: rgba(9, 9, 11, 0.82); backdrop-filter: saturate(140%) blur(14px); -webkit-backdrop-filter: saturate(140%) blur(14px); border-bottom-color: var(--grid); }
-  .nav__in { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .nav__in { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
   .nav__brand { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; letter-spacing: 0.24em; white-space: nowrap; }
-  :global(.nav__chev) { width: 7px; height: 11px; flex: none; }
+  :global(.nav__logo) { display: block; height: 56px; width: auto; flex: none; }
   .nav__links { display: flex; gap: clamp(16px, 2.6vw, 36px); font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; }
   .nav__links a { color: var(--silver); transition: color 0.2s; padding: 6px 0; }
   .nav__links a:hover { color: #fff; }
@@ -107,6 +108,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     .nav__links { gap: 16px; letter-spacing: 0.12em; }
     .nav__links a { white-space: nowrap; }
     .nav__brand { letter-spacing: 0.16em; gap: 6px; }
+    :global(.nav__logo) { height: 50px; }
     .nav__in { gap: 12px; }
   }
   @media (max-width: 480px) {
@@ -116,7 +118,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 
   .foot { background: var(--night); border-top: 1px solid var(--grid); color: var(--grey); }
   .foot__in { padding-top: 40px; padding-bottom: 48px; display: grid; gap: 16px; grid-template-columns: 1fr; }
-  .foot__brand { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; letter-spacing: 0.22em; color: var(--silver); }
+  :global(.foot__logo) { display: block; height: 48px; width: auto; }
+  .foot__brand { display: inline-flex; align-items: center; gap: 12px 24px; flex-wrap: wrap; text-transform: uppercase; font-size: 12px; letter-spacing: 0.22em; color: var(--silver); }
   .nowrap { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
   .foot__note { font-size: 14px; max-width: 60em; line-height: 1.5; }
   .foot__meta { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; }
