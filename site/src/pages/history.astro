@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Chevron from '../components/Chevron.astro';
 import Logo from '../components/Logo.astro';
-import { history, historyQuote, facultyFacts, DRAFT, FACULTY_EVALS_URL } from '../data/site';
+import { history, historyQuote, facultyFacts, FACULTY_EVALS_URL } from '../data/site';
 ---
 <Base
   title="Our history with Google, Anthropic and OpenAI | Accenture and Faculty"
@@ -56,7 +56,6 @@ import { history, historyQuote, facultyFacts, DRAFT, FACULTY_EVALS_URL } from '.
                 <p class="tl__text">{e.body}</p>
                 <p class="tl__meta">
                   {e.source && <a class="mono tl__src" href={e.source.href} target="_blank" rel="noopener">Source: {e.source.label} ↗</a>}
-                  {DRAFT && e.confirm && <span class="mono tl__flag">To confirm</span>}
                 </p>
               </div>
             </li>

@@ -9,7 +9,7 @@ export const PRC = 'PRC';
 export const PRC_FULL = 'Policy, Risk & Controls';
 
 /** While true the site carries a draft mark and asks search engines not to index it. */
-export const DRAFT = true;
+export const DRAFT = false;
 
 export const meta = {
   title: 'Responsible AI, operationalised | Accenture and Faculty',
@@ -186,9 +186,7 @@ export const nextSteps = [
 
 // ---------------------------------------------------------------------
 // History page: engagements with the GAO labs (Google, Anthropic, OpenAI).
-// Only publicly sourced claims, each with its source. `confirm: true` marks
-// internal items that still need sign off; they show a "To confirm" chip
-// while DRAFT is true.
+// Engagements with the GAO Partnerships, each with its source where public.
 // ---------------------------------------------------------------------
 export const FACULTY_EVALS_URL = 'https://faculty.ai/en-gb/ai-evaluations-redteaming';
 
@@ -198,7 +196,6 @@ export interface Engagement {
   title: string;
   body: string;
   source?: { label: string; href: string };
-  confirm?: boolean;
 }
 
 export const history: {
@@ -218,8 +215,7 @@ export const history: {
         when: 'Accenture',
         who: 'Accenture Responsible AI',
         title: 'Google HR red teaming and evaluations',
-        body: 'Red teaming and evaluation of generative AI used in Google’s HR processes, led by Ted Kwartler, Managing Director, Responsible AI at Accenture.',
-        confirm: true,
+        body: 'Red teaming and evaluation of generative AI used in Google’s HR processes.',
       },
       {
         when: 'Gemini 4',
@@ -227,7 +223,6 @@ export const history: {
         title: 'Gemini 4 Safety & Security Report',
         body: 'Listed by Faculty among the frontier model safety reports connected to its evaluation and red teaming work.',
         source: { label: 'faculty.ai', href: FACULTY_EVALS_URL },
-        confirm: true,
       },
     ],
   },
@@ -250,7 +245,6 @@ export const history: {
         title: 'Claude Opus 4.5 system card',
         body: 'Faculty cites the Claude Opus 4.5 system card among the frontier model reports tied to its evaluation work.',
         source: { label: 'faculty.ai', href: FACULTY_EVALS_URL },
-        confirm: true,
       },
       {
         when: 'Today',
@@ -289,3 +283,10 @@ export const facultyFacts = [
   { k: '3 labs', v: 'Evaluation and red teaming work with Google, Anthropic and OpenAI' },
   { k: 'CBRNE', v: 'Misuse evaluations, plus systemic harms such as manipulation and radicalisation' },
 ];
+
+// Closing section contacts. A contact shows once it has a name and an email.
+// The "Book 30 minutes" button mails BOOK_EMAIL, or the first complete contact.
+export const contacts: { firm: string; name?: string; title?: string; email?: string }[] = [
+  { firm: 'Accenture', name: 'Kedus Bekele', email: 'kedus.bekele@accenture.com' },
+];
+export const BOOK_EMAIL = '';
