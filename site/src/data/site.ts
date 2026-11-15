@@ -18,11 +18,11 @@ export const meta = {
 };
 
 export const nav = [
-  { href: '/onepager', label: 'One Pager' },
   { href: '/#offer', label: 'Offer' },
   { href: '/#assess', label: 'Assess' },
   { href: '/#govern', label: 'Govern' },
   { href: '/#assure', label: 'Red team' },
+  { href: '/onepager', label: 'One Pager' },
   { href: '/usecases', label: 'Use cases' },
   { href: '/example', label: 'Example' },
   { href: '/history', label: 'History' },
