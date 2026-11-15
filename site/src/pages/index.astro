@@ -41,17 +41,21 @@ const bookQuery = `?subject=${encodeURIComponent('Book 30 minutes: Responsible A
     <div class="wrap hero__in">
       <div class="hero__top">
         <div class="hero__copy reveal">
-        <p class="kicker">ACN offerings / Responsible AI and red teaming</p>
-        <h1 class="display h1" id="hero-title">Responsible AI,<br />operationalised.</h1>
-        <p class="display hero__sub">Evidence your board can act on in two weeks.</p>
-        <p class="lede hero__lede">
-          Assess. Govern. Red team. Monitor.<br />
-          One partner from first evaluation to continuous assurance.
+        <p class="hero__eyebrow mono">
+          <span class="hero__co">Accenture <span class="hero__x" aria-label="and">×</span> Faculty</span>
+          <span class="hero__for">For CROs, CISOs and AI leaders</span>
         </p>
+        <h1 class="display h1" id="hero-title">Responsible AI,<br />operationalised.</h1>
+        <p class="display hero__sub">Evidence your board can act on in two weeks, from assessment to red teaming to continuous assurance.</p>
         <div class="hero__cta">
-          <a class="btn btn--primary" href="#start">Start a rapid eval <Chevron color="currentColor" /></a>
+          <a class="btn btn--primary" href="#start" data-m={book?.mail} data-q={bookQuery}>Book a 30 minute scoping call <Chevron color="currentColor" /></a>
           <a class="btn" href="#offer">See the offer</a>
         </div>
+        <ul class="hero__proof mono" aria-label="At a glance">
+          <li>Two week rapid eval</li>
+          <li>5 assessment dimensions</li>
+          <li>Assess, govern, red team, monitor</li>
+        </ul>
       </div>
       <Chevron class="hero__mark" />
       </div>
@@ -59,7 +63,7 @@ const bookQuery = `?subject=${encodeURIComponent('Book 30 minutes: Responsible A
         <p class="hero__with mono">In partnership with Google, Anthropic and OpenAI</p>
         <ul class="hero__logos">
           {partners.map((p) => (
-            <li class="hero__p"><Logo name={p.logo} size={60} /><span class="display">{p.name}</span></li>
+            <li class="hero__p"><Logo name={p.logo} size={40} /><span class="display">{p.name}</span></li>
           ))}
         </ul>
         <a class="hero__hist mono" href="/history">Our GAO Partnerships history <Chevron color="currentColor" /></a>
@@ -482,27 +486,33 @@ const bookQuery = `?subject=${encodeURIComponent('Book 30 minutes: Responsible A
   #csa-title { font-size: clamp(30px, 4vw, 52px); }
   #hero-title { font-size: clamp(32px, 4.8vw, 68px); }
   /* ---------- hero ---------- */
-  .hero { position: relative; min-height: 100svh; display: flex; overflow: hidden; }
-  .hero__in { position: relative; display: flex; flex-direction: column; justify-content: space-between; padding-top: clamp(96px, 14vh, 160px); padding-bottom: 32px; gap: 36px; }
+  .hero { position: relative; overflow: hidden; }
+  .hero__in { position: relative; display: flex; flex-direction: column; padding-top: clamp(112px, 16vh, 168px); padding-bottom: clamp(36px, 5vh, 56px); gap: clamp(48px, 7vh, 80px); }
   .hero__top { display: flex; align-items: center; gap: clamp(48px, 7vw, 120px); }
   .hero__copy { position: relative; display: grid; gap: 22px; }
-  :global(.hero__mark) { flex: none; height: clamp(260px, 44vh, 440px); width: auto; }
+  :global(.hero__mark) { flex: none; height: clamp(200px, 34vh, 340px); width: auto; }
   @media (max-width: 900px) { :global(.hero__mark) { position: absolute; right: -60px; top: 18%; opacity: 0.32; } }
-  .hero__sub { font-size: clamp(22px, 2.3vw, 32px); line-height: 1.15; color: #fff; margin-top: -6px; }
-  .hero__lede { color: var(--silver); }
-  @media (max-width: 760px) and (max-height: 720px) { .hero__lede { display: none; } }
-  .hero__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 4px; }
+  .hero__eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; }
+  .hero__co { color: #fff; }
+  .hero__x { color: var(--purple); margin: 0 0.15em; }
+  .hero__for { color: #c4b5fd; padding-left: 18px; border-left: 1px solid #3f3f46; }
+  .hero__sub { font-size: clamp(20px, 1.9vw, 26px); line-height: 1.3; color: var(--silver); max-width: 30em; margin-top: -4px; }
+  .hero__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px; }
+  .hero__proof { display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--silver); }
+  .hero__proof li { display: inline-flex; align-items: center; gap: 10px; }
+  .hero__proof li::before { content: ''; width: 6px; height: 6px; background: var(--purple); }
+  @media (max-width: 760px) and (max-height: 720px) { .hero__proof { display: none; } }
   :global(.hero__chev) { position: absolute; right: clamp(-80px, 5vw, 110px); bottom: 14vh; height: clamp(300px, 56vh, 620px); width: auto; }
   @media (max-width: 900px) { :global(.hero__chev) { opacity: 0.32; right: -60px; } }
   .hero__gao { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 16px 40px; border-top: 1px solid var(--grid); padding-top: 22px; }
-  .hero__with { grid-column: 1 / -1; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--silver); }
-  .hero__logos { display: flex; flex-wrap: wrap; align-items: center; gap: 20px clamp(32px, 5vw, 72px); }
-  .hero__p { display: inline-flex; align-items: center; gap: 18px; color: #fff; font-size: clamp(30px, 3.6vw, 52px); line-height: 1; }
+  .hero__with { grid-column: 1 / -1; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--grey); }
+  .hero__logos { display: flex; flex-wrap: wrap; align-items: center; gap: 18px clamp(28px, 4vw, 56px); }
+  .hero__p { display: inline-flex; align-items: center; gap: 14px; color: #d4d4d8; font-size: clamp(22px, 2.5vw, 36px); line-height: 1; opacity: 0.9; }
   .hero__hist { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); padding-bottom: 6px; border-bottom: 1.5px solid var(--purple); white-space: nowrap; transition: color 0.2s; }
   .hero__hist:hover { color: #fff; }
   @media (max-width: 1100px) { .hero__gao { grid-template-columns: 1fr; } .hero__hist { justify-self: start; } }
   .hero__hist :global(svg) { width: 7px; height: 11px; }
-  @media (max-width: 760px) { .hero__in { padding-top: 84px; gap: 28px; } .hero__gao { grid-template-columns: 1fr; } .hero__p :global(svg) { width: 40px; height: 40px; } .hero__hist { justify-self: start; } }
+  @media (max-width: 760px) { .hero__in { padding-top: 92px; gap: 40px; } .hero__for { padding-left: 0; border-left: 0; flex-basis: 100%; } .hero__gao { grid-template-columns: 1fr; } .hero__p :global(svg) { width: 30px; height: 30px; } .hero__hist { justify-self: start; } }
 
   /* ---------- shared layout ---------- */
   .cols3 { display: grid; gap: clamp(32px, 4vw, 56px); grid-template-columns: repeat(3, 1fr); }
