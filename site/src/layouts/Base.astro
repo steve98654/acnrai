@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Chevron from '../components/Chevron.astro';
 import Mark from '../components/Mark.astro';
-import { meta, nav, DRAFT } from '../data/site';
+import { meta, nav, DRAFT, CF_ANALYTICS_TOKEN } from '../data/site';
 
 interface Props { title?: string; description?: string }
 const { title = meta.title, description = meta.description } = Astro.props;
@@ -32,6 +32,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="preload" href="/fonts/lm-sans-demicond.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="/fonts/lm-sans-regular.woff" as="font" type="font/woff" crossorigin />
     <script is:inline>document.documentElement.classList.add('js');</script>
+    {CF_ANALYTICS_TOKEN && <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: CF_ANALYTICS_TOKEN })}></script>}
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>

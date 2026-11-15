@@ -292,3 +292,23 @@ export const facultyFacts = [
 export const contacts: { firm: string; name?: string; title?: string; mail?: string; mailImg?: string }[] = [
   { firm: 'Accenture', name: 'Kedus Bekele', mail: 'bW9jLmVydXRuZWNjYUBlbGVrZWIuc3VkZWs=', mailImg: '/contact/kedus.png' },
 ];
+
+// Landing page "how it works" strip under the hero.
+export const howItWorks = [
+  { key: 'assess', title: 'Assess', body: 'Baseline every AI system against your own policies.', href: '#assess' },
+  { key: 'govern', title: 'Govern', body: 'Turn findings into owned controls and decision rights.', href: '#govern' },
+  { key: 'redteam', title: 'Red team', body: 'Attack your models and agents before anyone else does.', href: '#assure' },
+  { key: 'monitor', title: 'Monitor', body: 'Retest continuously so the evidence stays current.', href: '#implement' },
+];
+
+// Landing page quote. Attribution requested as Abraham Lincoln; the line is also
+// widely credited to Peter Drucker or Alan Kay. Change `who` here if needed.
+export const landingQuote = {
+  text: 'The best way to predict the future is to create it.',
+  who: 'Abraham Lincoln',
+};
+
+// Cloudflare Web Analytics. Paste the site token from the Cloudflare dashboard
+// (Analytics and logs, Web Analytics, acnr.ai, Manage site, JS snippet) to turn
+// the beacon on. Empty means no analytics script is loaded.
+export const CF_ANALYTICS_TOKEN = '';

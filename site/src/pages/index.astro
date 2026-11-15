@@ -9,6 +9,8 @@ import {
   maturityLevels, heatmap, findings, findingToAction, lifecycle, operate, prc, security,
   attacks, cadence, roadmap, nextSteps,
   contacts,
+  howItWorks,
+  landingQuote,
 } from '../data/site';
 
 // Radar geometry (current state assessment, illustrative)
@@ -46,11 +48,11 @@ const bookQuery = `?subject=${encodeURIComponent('Book 30 minutes: Responsible A
           <span class="hero__co">AI trust, tested and proven</span>
           <span class="hero__for">For CROs, CISOs and AI leaders</span>
         </p>
-        <h1 class="display h1" id="hero-title">Responsible AI,<br />operationalised.</h1>
+        <h1 class="display h1" id="hero-title">AI you can defend.</h1>
         <p class="display hero__sub">Evidence your board can act on in two weeks, from assessment to red teaming to continuous assurance.</p>
         <div class="hero__cta">
           <a class="btn btn--primary" href="#start" data-m={book?.mail} data-q={bookQuery}>Book a 30 minute scoping call <Chevron color="currentColor" /></a>
-          <a class="btn" href="#offer">See the offer</a>
+          <a class="btn" href="/onepager/ACN_RAI_One-Pager.pdf" download>Download the one pager</a>
         </div>
         <ul class="hero__proof mono" aria-label="At a glance">
           <li>Two week rapid eval</li>
@@ -69,6 +71,30 @@ const bookQuery = `?subject=${encodeURIComponent('Book 30 minutes: Responsible A
         </ul>
         <a class="hero__hist mono" href="/history">Our GAO Partnerships history <Chevron color="currentColor" /></a>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <h2 class="mono how__title" id="how-title">How it works</h2>
+      <ol class="how__grid">
+        {howItWorks.map((h, i) => (
+          <li class="reveal" style={`transition-delay:${i * 70}ms`}>
+            <a href={h.href} class="how__item">
+              <span class="how__icon" aria-hidden="true">
+                {h.key === 'assess' && <svg viewBox="0 0 32 32"><circle cx="14" cy="14" r="8.5" /><path d="M20.5 20.5 L27 27" /><path d="M10 14 h8 M14 10 v8" /></svg>}
+                {h.key === 'govern' && <svg viewBox="0 0 32 32"><path d="M16 4 L27 8.5 V16 C27 22 22 26.5 16 28 C10 26.5 5 22 5 16 V8.5 Z" /><path d="M11 16 l3.5 3.5 L21 12.5" /></svg>}
+                {h.key === 'redteam' && <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11" /><circle cx="16" cy="16" r="6" /><circle cx="16" cy="16" r="1.4" class="fill" /><path d="M16 2 v6 M16 24 v6 M2 16 h6 M24 16 h6" /></svg>}
+                {h.key === 'monitor' && <svg viewBox="0 0 32 32"><path d="M3 17 H9 L12 9 L17 24 L20.5 13 L23 17 H29" /><rect x="3" y="4" width="26" height="24" rx="1" class="frame" /></svg>}
+              </span>
+              <span class="mono how__n">0{i + 1}</span>
+              <span class="display how__t">{h.title}</span>
+              <span class="how__b">{h.body}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 
@@ -442,6 +468,16 @@ const bookQuery = `?subject=${encodeURIComponent('Book 30 minutes: Responsible A
     </div>
   </section>
 
+  <!-- ============ QUOTE ============ -->
+  <section class="sec sec--mist lq" aria-label="Quote">
+    <div class="wrap">
+      <figure class="lq__fig reveal">
+        <blockquote class="display">“{landingQuote.text}”</blockquote>
+        <figcaption class="mono">{landingQuote.who}</figcaption>
+      </figure>
+    </div>
+  </section>
+
   <!-- ============ CLOSE ============ -->
   <section class="close grid-bg" id="start" aria-labelledby="close-title">
     <Mark name="master" class="hero__chev close__chev" />
@@ -486,6 +522,27 @@ const bookQuery = `?subject=${encodeURIComponent('Book 30 minutes: Responsible A
 <style>
   #csa-title { font-size: clamp(30px, 4vw, 52px); }
   #hero-title { font-size: clamp(32px, 4.8vw, 68px); }
+  /* ---------- how it works ---------- */
+  .how { background: var(--night); color: #fff; border-top: 1px solid var(--grid); padding: clamp(40px, 6vw, 64px) 0 clamp(48px, 7vw, 80px); }
+  .how__title { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--silver); font-weight: 400; margin: 0 0 24px; }
+  .how__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--grid); border: 1px solid var(--grid); }
+  .how__item { display: grid; gap: 10px; align-content: start; height: 100%; padding: 28px 26px 30px; background: var(--night); transition: background 0.2s; }
+  .how__item:hover { background: #121216; }
+  .how__icon svg { width: 34px; height: 34px; fill: none; stroke: var(--purple); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .how__icon .fill { fill: var(--purple); stroke: none; }
+  .how__icon .frame { stroke: #3f3f46; }
+  .how__n { font-size: 12px; letter-spacing: 0.2em; color: var(--grey); margin-top: 8px; }
+  .how__t { font-size: 26px; line-height: 1.1; }
+  .how__b { color: var(--silver); font-size: 16px; line-height: 1.45; }
+  @media (max-width: 960px) { .how__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .how__grid { grid-template-columns: 1fr; } }
+
+  /* ---------- landing quote ---------- */
+  .lq__fig { margin: 0 auto; max-width: 1000px; display: grid; gap: 24px; text-align: center; }
+  .lq__fig blockquote { margin: 0; font-size: clamp(32px, 4.4vw, 58px); line-height: 1.1; color: var(--ink); }
+  .lq__fig figcaption { font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--grey); }
+  .lq__fig figcaption::before { content: ''; display: block; width: 40px; height: 2px; background: var(--purple); margin: 0 auto 18px; }
+
   /* ---------- hero ---------- */
   .hero { position: relative; overflow: hidden; }
   .hero__in { position: relative; display: flex; flex-direction: column; padding-top: clamp(112px, 16vh, 168px); padding-bottom: clamp(36px, 5vh, 56px); gap: clamp(48px, 7vh, 80px); }
