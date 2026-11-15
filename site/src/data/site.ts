@@ -32,7 +32,7 @@ export const nav = [
 export const moment = [
   {
     title: 'Frontier models are in production',
-    body: 'Agents built on GAO models now touch customers, code and decisions.',
+    body: 'Agents built on models from our GAO Partnerships now touch customers, code and decisions.',
   },
   {
     title: 'Regulation has teeth',
