@@ -94,10 +94,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   .nav__links a.is-cta { color: #fff; border-bottom: 1.5px solid var(--purple); }
   .nav__short { display: none; }
   @media (max-width: 1180px) {
-    .nav__links li:not(:nth-child(-n + 1)):nth-child(-n + 5) { display: none; }
+    .nav__links li:nth-child(-n + 4) { display: none; }
   }
   @media (max-width: 760px) {
-    .nav__links li:not(:first-child):not(:last-child) { display: none; }
+    .nav__links li:not(:nth-child(5)):not(:last-child) { display: none; }
     .nav__full { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     .nav__short { display: inline !important; }
     .nav__links { gap: 16px; letter-spacing: 0.12em; }
