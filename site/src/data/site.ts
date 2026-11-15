@@ -26,7 +26,7 @@ export const nav = [
   { href: '/usecases', label: 'Use cases' },
   { href: '/example', label: 'Example' },
   { href: '/history', label: 'History' },
-  { href: '/#start', label: 'Start', cta: true },
+  { href: '/#start', label: 'Point of Contact', short: 'Contact', cta: true },
 ];
 
 export const moment = [
