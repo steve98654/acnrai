@@ -12,7 +12,7 @@ export const PRC_FULL = 'Policy, Risk & Controls';
 export const DRAFT = false;
 
 export const meta = {
-  title: 'Responsible AI, operationalised | Accenture and Faculty',
+  title: 'Defensible AI, by design | Accenture and Faculty',
   description:
     'Assess, govern and red team the AI you already run. One Accenture and Faculty team, across Google, Anthropic and OpenAI models.',
 };

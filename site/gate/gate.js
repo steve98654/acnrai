@@ -67,7 +67,7 @@ button:hover{background:#fff;color:#000}
 </style></head><body>
 <svg class="chev" viewBox="0 0 62 100" aria-hidden="true"><path d="M0 0 L62 50 L0 100 L0 79.5 L36.5 50 L0 20.5 Z"/></svg>
 <main><img class="logo" src="/brand/cobrand.svg" alt="Accenture and Faculty"><p class="k">Private preview</p>
-<h1>AI you can<br>defend.</h1>
+<h1>Defensible AI,<br>by design.</h1>
 <form method="post" action="/__login"><input type="hidden" name="next" value="${next.replace(/"/g, '&quot;')}">
 <input type="password" name="password" placeholder="Password" aria-label="Password" autocomplete="current-password" autofocus required>
 <button type="submit">Enter</button></form>
