@@ -69,7 +69,6 @@ import { history, historyQuote, facultyFacts, FACULTY_EVALS_URL } from '../data/
   <section class="sec sec--dark quote" aria-label="Testimonial">
     <div class="wrap">
       <figure class="reveal">
-        <Chevron class="quote__chev" />
         <blockquote class="display">“{historyQuote.text}”</blockquote>
         <figcaption class="mono">{historyQuote.who} <span class="muted">/ {historyQuote.context}</span></figcaption>
       </figure>
@@ -129,7 +128,6 @@ import { history, historyQuote, facultyFacts, FACULTY_EVALS_URL } from '../data/
   .quote figure { margin: 0; position: relative; display: grid; gap: 28px; max-width: 980px; }
   .quote blockquote { margin: 0; font-size: clamp(28px, 3.4vw, 44px); line-height: 1.08; }
   .quote figcaption { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--silver); }
-  :global(.quote__chev) { width: 22px; height: 36px; }
 
   .close__in { display: grid; gap: 32px; padding-top: clamp(88px, 12vw, 160px); padding-bottom: clamp(88px, 12vw, 160px); }
   .close__cta { display: flex; flex-wrap: wrap; gap: 14px; }
