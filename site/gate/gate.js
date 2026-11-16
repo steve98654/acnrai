@@ -10,11 +10,11 @@
 // 30 days. Changing SITE_PASSWORD signs everyone out. /logout clears the cookie.
 
 // Switch: false serves the site openly. Set to true to turn the password back on.
-export const PASSWORD_ENABLED = false;
+export const PASSWORD_ENABLED = true;
 
 const COOKIE = 'acnr_auth';
 const MAX_AGE = 60 * 60 * 24 * 30;
-const PUBLIC = [/^\/fonts\//, /^\/favicon\.svg$/];
+const PUBLIC = [/^\/fonts\//, /^\/favicon\.svg$/, /^\/brand\/cobrand\.svg$/];
 
 async function sign(secret, value) {
   const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
@@ -55,7 +55,7 @@ background-image:linear-gradient(#1c1c21 1px,transparent 1px),linear-gradient(90
 .chev{position:fixed;right:6vw;bottom:10vh;height:46vh;fill:#a100ff}
 main{position:relative;width:100%;max-width:560px;padding:0 clamp(16px,6vw,72px)}
 .k{font-family:'LM Mono',monospace;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#a1a1aa}
-.k b{color:#a100ff;font-weight:400}
+.logo{display:block;height:56px;width:auto;margin:0 0 40px -6px}
 h1{font-family:'LM Sans DC',sans-serif;font-weight:600;font-size:clamp(40px,7vw,64px);line-height:1.02;margin:28px 0 32px}
 form{display:flex;flex-wrap:wrap;gap:12px}
 input{flex:1 1 220px;height:52px;padding:0 16px;background:#141418;border:1.5px solid #3f3f46;color:#fff;font:inherit;font-size:17px;outline:none}
@@ -66,8 +66,8 @@ button:hover{background:#fff;color:#000}
 @media (max-width:760px){.chev{opacity:.3;right:-40px}}
 </style></head><body>
 <svg class="chev" viewBox="0 0 62 100" aria-hidden="true"><path d="M0 0 L62 50 L0 100 L0 79.5 L36.5 50 L0 20.5 Z"/></svg>
-<main><p class="k">Accenture <b>&gt;</b> Faculty / Private preview</p>
-<h1>Responsible AI,<br>operationalised.</h1>
+<main><img class="logo" src="/brand/cobrand.svg" alt="Accenture and Faculty"><p class="k">Private preview</p>
+<h1>AI you can<br>defend.</h1>
 <form method="post" action="/__login"><input type="hidden" name="next" value="${next.replace(/"/g, '&quot;')}">
 <input type="password" name="password" placeholder="Password" aria-label="Password" autocomplete="current-password" autofocus required>
 <button type="submit">Enter</button></form>
