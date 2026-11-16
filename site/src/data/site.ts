@@ -90,6 +90,8 @@ export const dimensions = [
   { n: '03', short: 'Data', title: 'Data and privacy', body: 'Lineage, consent, leakage and retention.', current: 0.6 },
   { n: '04', short: 'Security', title: 'Security and misuse', body: 'Prompt injection, jailbreaks, agent permissions.', current: 0.2 },
   { n: '05', short: 'Accountability', title: 'Accountability', body: 'Owners, policies, decision rights, regulatory readiness.', current: 0.4 },
+  { n: '06', short: 'Third party', title: 'Third party and vendor risk', body: 'Model providers, embedded AI in vendor tools, contracts and due diligence.', current: 0.2 },
+  { n: '07', short: 'Monitoring', title: 'Monitoring and incidents', body: 'Drift, incident response and retesting in production.', current: 0.4 },
 ];
 
 export const outputs = ['AI system register', 'Maturity profile', 'Prioritised risks', 'Executive readout'];
@@ -117,6 +119,8 @@ export const heatmap = [
   { label: 'Data & privacy', score: 3 },
   { label: 'Security', score: 1 },
   { label: 'Accountability', score: 2 },
+  { label: 'Third party', score: 1 },
+  { label: 'Monitoring', score: 2 },
 ];
 export const findings = [
   'Customer agent open to prompt injection hidden in inbound email.',
