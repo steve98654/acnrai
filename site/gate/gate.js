@@ -14,7 +14,7 @@ export const PASSWORD_ENABLED = true;
 
 const COOKIE = 'acnr_auth';
 const MAX_AGE = 60 * 60 * 24 * 30;
-const PUBLIC = [/^\/fonts\//, /^\/favicon\.svg$/, /^\/brand\/(cobrand|risk-to-trust)\.svg$/];
+const PUBLIC = [/^\/fonts\//, /^\/favicon\.svg$/, /^\/brand\/cobrand\.svg$/];
 
 async function sign(secret, value) {
   const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
@@ -52,7 +52,6 @@ function page(message, next, status) {
 *{box-sizing:border-box}html,body{height:100%}
 body{margin:0;background:#09090b;color:#fff;font-family:'LM Sans',system-ui,sans-serif;display:flex;align-items:center;
 background-image:linear-gradient(#1c1c21 1px,transparent 1px),linear-gradient(90deg,#1c1c21 1px,transparent 1px);background-size:40px 40px;overflow:hidden}
-.chev{position:fixed;right:6vw;bottom:14vh;height:52vh;width:auto}
 main{position:relative;width:100%;max-width:560px;padding:0 clamp(16px,6vw,72px)}
 .k{font-family:'LM Mono',monospace;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#a1a1aa}
 .logo{display:block;height:56px;width:auto;margin:0 0 40px -6px}
@@ -63,9 +62,7 @@ input:focus{border-color:#a100ff}
 button{height:52px;padding:0 26px;background:#a100ff;border:0;color:#fff;font-family:'LM Mono',monospace;font-size:13px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
 button:hover{background:#fff;color:#000}
 .m{min-height:24px;margin-top:16px;color:#c27bff;font-size:15px}
-@media (max-width:760px){.chev{opacity:.3;right:-40px}}
 </style></head><body>
-<img class="chev" src="/brand/risk-to-trust.svg" alt="" aria-hidden="true">
 <main><img class="logo" src="/brand/cobrand.svg" alt="Accenture and Faculty"><p class="k">Private preview</p>
 <h1>Defensible AI,<br>by design.</h1>
 <form method="post" action="/__login"><input type="hidden" name="next" value="${next.replace(/"/g, '&quot;')}">
