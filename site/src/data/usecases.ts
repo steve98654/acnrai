@@ -53,9 +53,9 @@ export const useCases: UseCase[] = [
     title: 'Clinical note drafting readiness check',
     system: 'Ambient scribe drafting discharge notes',
     models: ['Gemini'], weeks: 3,
-    stats: [{ k: 'Dimensions', v: '5' }, { k: 'Data gaps', v: '11' }, { k: 'Maturity', v: '2 / 5' }],
+    stats: [{ k: 'Dimensions', v: '7' }, { k: 'Data gaps', v: '11' }, { k: 'Maturity', v: '2 / 5' }],
     challenge: 'A pilot was about to scale with no view of privacy, bias or accountability.',
-    approach: 'Five dimension assessment with clinical reviewers calibrating the grader.',
+    approach: 'Seven dimension assessment with clinical reviewers calibrating the grader.',
     outcome: 'Scale up gated on three controls; consent and retention gaps closed before go live.',
   },
   {

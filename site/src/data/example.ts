@@ -37,6 +37,8 @@ export const maturity = [
   { d: 'Data and privacy', now: 3, target: 4 },
   { d: 'Security and misuse', now: 1.5, target: 4 },
   { d: 'Accountability', now: 2, target: 3.5 },
+  { d: 'Third party and vendor risk', now: 1, target: 3.5 },
+  { d: 'Monitoring and incidents', now: 2, target: 4 },
 ];
 
 export const rapidEval = [
