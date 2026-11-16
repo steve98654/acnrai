@@ -126,7 +126,7 @@ export const findings = [
 
 export const findingToAction = [
   { finding: 'Use cases missing from the register', action: 'Mandatory AI intake, inventory and risk tiering at idea stage', owner: 'AI office' },
-  { finding: 'Agents open to prompt injection', action: 'Release gate needs red team sign off for tier 1 and 2 systems', owner: 'CISO' },
+  { finding: 'Agents open to prompt injection', action: 'Release gate needs red team sign off for tier 1 and 2 systems', owner: 'ISO' },
   { finding: 'Bias untested on live populations', action: 'Fairness thresholds and monitoring KPIs per use case', owner: 'Model risk' },
   { finding: 'No owner for third party model risk', action: 'Vendor and model due diligence with contractual controls', owner: 'Procurement' },
   { finding: 'Policies not mapped to regulation', action: 'One control set mapped to EU AI Act, ISO/IEC 42001 and NIST AI RMF', owner: 'Compliance' },

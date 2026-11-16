@@ -58,7 +58,7 @@ export const topFindings = [
 // ---------------- 02 Design ----------------
 export const actions = [
   { finding: '31 unregistered systems', action: 'Mandatory AI intake with automatic risk tiering', owner: 'Chief Data Office' },
-  { finding: 'Prompt injection in complaints agent', action: 'Red team sign off gate for tier 1 and 2 releases', owner: 'CISO' },
+  { finding: 'Prompt injection in complaints agent', action: 'Red team sign off gate for tier 1 and 2 releases', owner: 'ISO' },
   { finding: 'Uneven answers across segments', action: 'Fairness thresholds and monitoring per use case', owner: 'Model risk' },
   { finding: 'Invented product terms', action: 'Grounding to the product catalogue and a factuality test set', owner: 'Mortgages product owner' },
   { finding: 'Vendor model risk unowned', action: 'Due diligence and contract clauses for AI suppliers', owner: 'Procurement' },
@@ -66,7 +66,7 @@ export const actions = [
 
 export const council = [
   { role: 'Chair', who: 'Chief Risk Officer' },
-  { role: 'Members', who: 'CDO, CISO, General Counsel, Head of Model Risk, business line heads' },
+  { role: 'Members', who: 'CDO, ISO, General Counsel, Head of Model Risk, business line heads' },
   { role: 'Cadence', who: 'Monthly, with tier 1 decisions escalated within five days' },
   { role: 'Independent challenge', who: 'Internal audit, supported by Faculty' },
 ];
