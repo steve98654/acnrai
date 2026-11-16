@@ -1,8 +1,10 @@
 ---
-// The ">" motif from the decks, drawn geometrically (same proportions as the tikz \chevron).
+// Small UI arrow for links, buttons and lists: a thin stroked chevron in the
+// current text colour. Deliberately not the Accenture ">" mark, which appears
+// only inside the Accenture x Faculty co-brand logos.
 interface Props { class?: string; color?: string; label?: string }
-const { class: cls, color = 'var(--purple)', label } = Astro.props;
+const { class: cls, color = 'currentColor', label } = Astro.props;
 ---
-<svg class={cls} viewBox="0 0 62 100" fill={color} role={label ? 'img' : undefined} aria-label={label} aria-hidden={label ? undefined : 'true'}>
-  <path d="M0 0 L62 50 L0 100 L0 79.5 L36.5 50 L0 20.5 Z" />
+<svg class={cls} viewBox="0 0 62 100" fill="none" stroke={color} stroke-width="14" stroke-linecap="round" stroke-linejoin="round" role={label ? 'img' : undefined} aria-label={label} aria-hidden={label ? undefined : 'true'}>
+  <path d="M10 12 L52 50 L10 88" />
 </svg>
