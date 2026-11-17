@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Less work reaching managed services: Accenture and Faculty three pager</title>
+<!--
+  Three pager, three US Letter pages. Source for
+  public/threepager/ACN_RAI_Three-Pager.pdf and its page previews.
+  Render: node scripts/render-three-pager.mjs   (from site/)
+  House rules: no hyphens in copy, no standalone Accenture ">" (only inside
+  the co-brand marks), "GAO Partnerships" with Google, Anthropic, OpenAI order.
+-->
+<style>
+@font-face{font-family:'LM Sans';src:url('../../public/fonts/lm-sans-regular.woff') format('woff');font-weight:400}
+@font-face{font-family:'LM Sans';src:url('../../public/fonts/lm-sans-bold.woff') format('woff');font-weight:700}
+@font-face{font-family:'LM Sans DC';src:url('../../public/fonts/lm-sans-demicond.woff') format('woff');font-weight:600}
+@font-face{font-family:'LM Mono';src:url('../../public/fonts/lm-mono-regular.woff') format('woff')}
+@page{size:letter;margin:0}
+:root{--p:#a100ff;--pl:#be82ff;--deep:#2a0a45;--night:#09090b;--card:#18181b;--card2:#1f1f23;--rule:#27272a;--silver:#a1a1aa;--grey:#71717a;--grid:#141418}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--night)}
+body{font-family:'LM Sans',sans-serif;color:#fff;font-size:10.5px;line-height:1.45;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ul{list-style:none}
+.page{position:relative;width:816px;height:1056px;overflow:hidden;padding:40px 48px 36px;page-break-after:always;break-after:page;
+  background-color:var(--night);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px}
+.page:last-child{page-break-after:auto;break-after:auto}
+.k{font-family:'LM Mono',monospace;font-size:7.6px;letter-spacing:.24em;text-transform:uppercase;color:var(--pl)}
+.k.dim{color:var(--silver)}
+.d{font-family:'LM Sans DC',sans-serif;font-weight:600;letter-spacing:-.005em;line-height:1.05}
+.top{display:flex;align-items:center;gap:14px}
+.top img{height:34px;width:auto;margin-left:-3px}
+.top .k{color:var(--silver)}
+.h1{font-size:40px;margin-top:6px}
+.eb{margin-top:18px;color:#fff}.eb span{color:var(--silver)}
+.lede{font-size:13px;color:var(--silver);margin-top:8px;max-width:560px;line-height:1.4}
+.mark{position:absolute;right:56px;top:46px;height:150px;width:auto}
+.rule{border-top:1px solid var(--rule);margin:16px 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.h3{font-size:16px;margin:6px 0 6px}
+.arw{display:inline-block;width:6px;height:9px;flex:none;margin-top:3px}
+.list li{display:flex;gap:9px;margin-top:6px}
+.list b{font-weight:700}
+/* page 1: layers */
+.layer{position:relative;display:grid;grid-template-columns:48px 1fr;border:1px solid var(--rule);background:#0f0f12}
+.layer.l1{border:1px dashed #5b2a87;background:rgba(161,0,255,.07)}
+.layer .num{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:var(--p)}
+.layer.l2 .num{background:#e4e4e7;color:var(--night)}
+.layer.l3 .num{background:#3f3f46}
+.num .k{color:inherit;font-size:6.4px;opacity:.85}
+.num .n{font-family:'LM Sans DC';font-weight:600;font-size:34px;line-height:1}
+.layer .body{padding:10px 12px 12px}
+.lhead{display:flex;justify-content:space-between;align-items:baseline}
+.lhead .d{font-size:15px}
+.lhead .k{font-size:6.6px;color:var(--silver)}
+.l1 .lhead .k{color:var(--pl)}
+.lsub{color:var(--silver);font-size:9.4px;margin-top:2px}
+.cards{display:grid;gap:7px;margin-top:8px}
+.c4{grid-template-columns:repeat(4,1fr)}.c3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--card);border:1px solid #26262b;padding:8px 9px}
+.card .d{font-size:12px}
+.card p{color:var(--silver);font-size:8.6px;line-height:1.35;margin-top:3px}
+.tag{display:inline-block;margin-top:6px;font-family:'LM Mono';font-size:6.2px;letter-spacing:.18em;text-transform:uppercase;border:1px solid #3f3f46;color:var(--silver);padding:2px 5px}
+.card.hot{background:var(--p);border-color:var(--p)}
+.card.hot p{color:#f3e6ff}
+.card.hot .tag{background:#fff;color:var(--night);border-color:#fff}
+.flows{display:grid;grid-template-columns:1fr 1fr;padding:8px 0 8px 70px}
+.flow{display:flex;align-items:center;gap:10px}
+.flow svg{width:14px;height:30px;flex:none}
+.flow .box{border:1px solid var(--rule);background:#0f0f12;padding:4px 8px}
+.flow .k{font-size:6.2px}
+.flow span.t{display:block;font-size:9px}
+.callout{margin-top:12px;border-left:3px solid var(--p);background:rgba(161,0,255,.10);padding:8px 12px;font-size:9.6px;color:#e4e4e7}
+.callout b{color:#fff}
+/* page 2 */
+.adv li{display:grid;grid-template-columns:34px 1fr 84px;gap:0 10px;padding:9px 0;border-bottom:1px solid var(--rule)}
+.adv li:first-child{border-top:1px solid var(--rule)}
+.adv .n{font-family:'LM Sans DC';font-weight:600;font-size:22px;color:var(--p);line-height:1}
+.adv .d{font-size:14px}
+.adv p{color:var(--silver);font-size:9.6px;margin-top:3px;max-width:560px}
+.adv .k{text-align:right;color:var(--silver);font-size:6.4px;padding-top:4px}
+.steps{display:grid;gap:10px;margin-top:8px}
+.s3{grid-template-columns:repeat(3,1fr)}.s6{grid-template-columns:repeat(6,1fr);gap:6px}
+.step{position:relative;background:var(--card);padding:10px 12px 12px;min-height:96px}
+.step.hot{background:var(--p)}
+.step.out{outline:1.5px solid #fff;outline-offset:-1.5px}
+.step .k{color:var(--pl);font-size:6.6px}
+.step.hot .k{color:#f3e6ff}
+.step .d{font-size:15px;margin-top:6px}
+.step p{font-size:9px;color:var(--silver);margin-top:4px;line-height:1.38}
+.step.hot p{color:#f3e6ff}
+.s6 .step{min-height:74px;padding:8px 8px 10px}
+.s6 .step .d{font-size:12.5px;margin-top:4px}
+.s6 .step p{font-size:8.2px}
+.step + .step::before{content:'';position:absolute;left:-8px;top:50%;width:5px;height:8px;margin-top:-4px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 62 100'%3E%3Cpath d='M10 12 L52 50 L10 88' fill='none' stroke='%23a1a1aa' stroke-width='14' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.s6 .step + .step::before{left:-6px;width:4px;height:7px}
+.note{color:var(--silver);font-size:8.8px;margin-top:7px}
+.why p{margin-top:7px}
+.why p.k{margin-top:0}
+.why b{font-family:'LM Sans DC';font-weight:600;font-size:12px;margin-right:6px}
+.why .muted{color:var(--silver)}
+/* page 3 */
+.two{display:grid;grid-template-columns:1fr 1.15fr;gap:28px;margin-top:8px}
+.radar text{font-size:8px;fill:#d4d4d8;font-family:'LM Sans'}
+.legend{display:flex;gap:18px;font-size:8px;color:var(--silver);margin-top:2px;padding-left:26px}
+.legend i{display:inline-block;width:16px;height:0;border-top:2px solid var(--p);vertical-align:middle;margin-right:6px}
+.legend i.t{border-top:2px dashed #fff}
+.heat{display:grid;grid-template-columns:110px repeat(5,1fr);gap:4px;align-items:center}
+.heat .h{font-family:'LM Mono';font-size:5.8px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);text-align:center}
+.heat .r{font-size:9.6px}
+.heat .c{height:20px;background:#1c1c21;position:relative}
+.heat .c.f{background:var(--p)}
+.heat .c.f2{background:rgba(161,0,255,.65)}
+.heat .c.f3{background:rgba(161,0,255,.45)}
+.heat .c.tgt::after{content:'';position:absolute;right:-3px;top:-3px;bottom:-3px;border-right:1.5px dashed #fff}
+.find li{display:grid;grid-template-columns:24px 1fr auto;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--rule);font-size:9.6px}
+.find .n{font-family:'LM Sans DC';font-weight:600;font-size:15px;color:var(--p)}
+.find .tag{margin:0;color:var(--pl);border-color:#5b2a87}
+table{width:100%;border-collapse:collapse;margin-top:6px}
+th{font-family:'LM Mono';font-weight:400;font-size:6.4px;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);text-align:left;padding:0 8px 5px 0;border-bottom:1px solid var(--rule)}
+td{vertical-align:top;padding:7px 8px 7px 0;border-bottom:1px solid var(--rule);font-size:9.4px;color:#e4e4e7}
+td .k{font-size:6.2px}
+td .d{font-size:13px;color:#fff;margin-top:2px}
+.moves{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+.moves div{border-top:2px solid var(--p);padding-top:6px;font-size:9.4px;line-height:1.35}
+.moves .k{display:block;font-size:6.2px;margin-bottom:3px}
+.start{display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.start .d{font-size:20px;margin-top:6px}
+.contact{margin-top:8px;font-size:10.5px}.contact .k{margin-right:10px}
+.qr{display:flex;align-items:flex-end;gap:10px;flex:none}
+.qr .k{color:#fff}.qr .url{font-family:'LM Mono';font-size:8px;letter-spacing:.2em;color:#fff;margin-right:4px}
+.qr img{width:74px;height:74px;background:#fff;padding:4px;border-radius:2px}
+.p3 .rule{margin:11px 0}
+.p3 .h1{margin-top:12px}
+.p3 td{padding:5px 8px 5px 0}
+.p3 .s6 .step{min-height:64px}
+.p3 .find li{padding:4px 0}
+.foot{position:absolute;left:48px;right:48px;bottom:22px;font-size:7.4px;color:var(--grey)}
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1 ================= -->
+<section class="page">
+  <img class="mark" src="../../public/brand/risk-to-trust.svg" alt="">
+  <div class="top"><img src="../../public/brand/cobrand.svg" alt="Accenture and Faculty"><span class="k">/&nbsp;&nbsp;Responsible AI&nbsp;&nbsp;/&nbsp;&nbsp;GAO Partnerships</span></div>
+  <p class="k eb">AI Safety, Monitoring, and Trust&nbsp;&nbsp;|&nbsp;&nbsp;<span>For operations leaders</span></p>
+  <h1 class="d h1">Less work reaching<br>managed services.</h1>
+  <p class="lede">Defensible AI, by design, applied to operations. Resolve issues where they start, decide what matters first, and prove it on one workflow before a larger investment.</p>
+
+  <div class="rule"></div>
+  <div class="cols">
+    <div>
+      <p class="k">What we do</p>
+      <h2 class="d h3">Resolve it at the source.</h2>
+      <ul class="list">
+        <li><svg class="arw" viewBox="0 0 62 100"><path d="M10 12 L52 50 L10 88" fill="none" stroke="#a1a1aa" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Standardise and check inputs before work starts.</span></li>
+        <li><svg class="arw" viewBox="0 0 62 100"><path d="M10 12 L52 50 L10 88" fill="none" stroke="#a1a1aa" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Decide what to work on first, across every business area.</span></li>
+        <li><svg class="arw" viewBox="0 0 62 100"><path d="M10 12 L52 50 L10 88" fill="none" stroke="#a1a1aa" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Fix recurring causes where they begin.</span></li>
+      </ul>
+    </div>
+    <div>
+      <p class="k">What is different</p>
+      <h2 class="d h3">One decision layer, one team.</h2>
+      <ul class="list">
+        <li><svg class="arw" viewBox="0 0 62 100"><path d="M10 12 L52 50 L10 88" fill="none" stroke="#a1a1aa" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Frontier</b>, Faculty’s platform for connecting data, AI models and workflows, coordinates decisions across business areas.</span></li>
+        <li><svg class="arw" viewBox="0 0 62 100"><path d="M10 12 L52 50 L10 88" fill="none" stroke="#a1a1aa" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg><span>It starts from standardised intake across every channel, and builds that first where it is missing.</span></li>
+        <li><svg class="arw" viewBox="0 0 62 100"><path d="M10 12 L52 50 L10 88" fill="none" stroke="#a1a1aa" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg><span>People and control owners keep every approval. Every step is tested against your own rules.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+  <p class="k">How it fits&nbsp;&nbsp;/&nbsp;&nbsp;three layers across every business area</p>
+  <div style="margin-top:10px">
+    <div class="layer l1">
+      <div class="num"><span class="k">Layer</span><span class="n">1</span></div>
+      <div class="body">
+        <div class="lhead"><span class="d">Decisions across business areas</span><span class="k">Tested first</span></div>
+        <div class="cards c4">
+          <div class="card"><div class="d">Priority</div><p>Work ordered by value and time left.</p><span class="tag">Timeliness</span></div>
+          <div class="card"><div class="d">Capacity</div><p>Staff placed where volume spikes.</p><span class="tag">Capacity</span></div>
+          <div class="card"><div class="d">Review limits</div><p>Limits move with quality; owners approve.</p><span class="tag">Control</span></div>
+          <div class="card hot"><div class="d">Fix at source</div><p>Recurring causes ranked across areas.</p><span class="tag">Cost reduction</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="flows">
+      <div class="flow"><svg viewBox="0 0 14 30"><path d="M7 29 V3 M2 8 L7 2 L12 8" fill="none" stroke="#a100ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="box"><span class="k">Flows up</span><span class="t">Volumes, exposure, age</span></div></div>
+      <div class="flow"><svg viewBox="0 0 14 30"><path d="M7 1 V27 M2 22 L7 28 L12 22" fill="none" stroke="#e4e4e7" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="box"><span class="k">Flows down</span><span class="t">Recommendations; owners approve</span></div></div>
+    </div>
+    <div class="layer l2">
+      <div class="num"><span class="k">Layer</span><span class="n">2</span></div>
+      <div class="body">
+        <div class="lhead"><span class="d">Workflows in each business area</span><span class="k">In the proposed design</span></div>
+        <p class="lsub">Each area keeps its own rules, routing and approvals. Managed services handles what remains.</p>
+        <div class="cards c3">
+          <div class="card"><div class="d">Operations</div><p>Claims, servicing, contact centre, central ops</p></div>
+          <div class="card"><div class="d">Enterprise functions</div><p>Finance and accounting, HR, procurement</p></div>
+          <div class="card"><div class="d">Technology</div><p>Infrastructure, applications, security</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="flows">
+      <div class="flow"><svg viewBox="0 0 14 30"><path d="M7 29 V3 M2 8 L7 2 L12 8" fill="none" stroke="#a100ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="box"><span class="k">Flows up</span><span class="t">Standardised, validated records</span></div></div>
+      <div class="flow"><svg viewBox="0 0 14 30"><path d="M7 1 V27 M2 22 L7 28 L12 22" fill="none" stroke="#e4e4e7" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="box"><span class="k">Flows down</span><span class="t">Fixes applied at the source</span></div></div>
+    </div>
+    <div class="layer l3">
+      <div class="num"><span class="k">Layer</span><span class="n">3</span></div>
+      <div class="body">
+        <div class="lhead"><span class="d">Systems and data</span><span class="k">In the proposed design</span></div>
+        <div class="cards c3">
+          <div class="card"><div class="d">Source systems</div><p>Across every business area</p></div>
+          <div class="card"><div class="d">Standardised intake</div><p>Every channel, one format</p></div>
+          <div class="card"><div class="d">Checks and audit trail</div><p>Validation, mappings, evidence</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="callout"><b>Where cost falls.</b> Recurring work removed at the source, net of all effort; the test measures it. The other decisions add timeliness, capacity and control.</p>
+</section>
+
+<!-- ================= PAGE 2 ================= -->
+<section class="page">
+  <div class="top"><img src="../../public/brand/cobrand.svg" alt="Accenture and Faculty"><span class="k">/&nbsp;&nbsp;Responsible AI&nbsp;&nbsp;/&nbsp;&nbsp;GAO Partnerships</span></div>
+  <h1 class="d h1">Five advantages for your operations.</h1>
+  <p class="lede">What a decision layer adds on top of a standardised foundation.</p>
+
+  <div class="rule"></div>
+  <p class="k" style="margin-bottom:8px">What the decision layer adds</p>
+  <ol class="adv">
+    <li><span class="n">1</span><div><div class="d">Beyond faster intake, better performance.</div><p>With intake standardised across channels, a decision layer on top turns that data into action: better service levels, shorter cycle times, lower cost to serve.</p></div><span class="k">Layers 3 + 1</span></li>
+    <li><span class="n">2</span><div><div class="d">Your most valuable work is protected when volume spikes.</div><p>Work is ordered by its value and the time left, not first in, first out. When volumes surge, overtime, reallocation and limits are weighed against penalties and revenue at risk.</p></div><span class="k">Layer 1</span></li>
+    <li><span class="n">3</span><div><div class="d">More straight through processing, without downstream risk.</div><p>We predict which cases would cause rework, resolve complex exceptions and keep checking quality. Review limits move with quality, inside limits that control owners set and approve.</p></div><span class="k">Layers 2 + 1</span></li>
+    <li><span class="n">4</span><div><div class="d">You see the value of every decision.</div><p>Each operational decision shows its trade off: penalty avoided, revenue protected, rework prevented, overtime not spent. Leadership gets an auditable view of the value delivered.</p></div><span class="k">Layer 1</span></li>
+    <li><span class="n">5</span><div><div class="d">A foundation for decisions across the whole value chain.</div><p>Start with one workflow, then extend to every stage where you trade off growth, cost and risk. Decisions are connected, so a change in one area is assessed for its effect on the others.</p></div><span class="k">Every layer</span></li>
+  </ol>
+
+  <div class="rule"></div>
+  <p class="k">How the test works</p>
+  <div class="steps s3">
+    <div class="step hot"><span class="k">01</span><div class="d">Pick one task</div><p>Choose one recurring cause or one review order. Agree the rules it is tested against and what success looks like.</p></div>
+    <div class="step"><span class="k">02</span><div class="d">Build and test it</div><p>Use sample data and the tools already in use, with Frontier coordinating. Test it on realistic and difficult cases drawn from your own rules.</p></div>
+    <div class="step"><span class="k">03</span><div class="d">Verify, measure, decide</div><p>Specialists verify the serious findings. Compare effort, recurrence and hours per case. Then keep the tools in use, explore Frontier, or stop.</p></div>
+  </div>
+  <p class="note">Faculty’s prototyping support builds the example with sample data only: no live systems, and people still approve.</p>
+
+  <div class="rule"></div>
+  <div class="cols">
+    <div>
+      <p class="k">How value is measured</p>
+      <ul class="list">
+        <li><svg class="arw" viewBox="0 0 62 100"><path d="M10 12 L52 50 L10 88" fill="none" stroke="#a1a1aa" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Net</b> of platform licensing, integration and support, remaining review, and source owner effort.</span></li>
+        <li><svg class="arw" viewBox="0 0 62 100"><path d="M10 12 L52 50 L10 88" fill="none" stroke="#a1a1aa" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Beyond</b> savings your plans already assume.</span></li>
+        <li><svg class="arw" viewBox="0 0 62 100"><path d="M10 12 L52 50 L10 88" fill="none" stroke="#a1a1aa" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Kept apart:</b> Accenture’s delivery cost and your own effort; prototype cost and ongoing benefit.</span></li>
+      </ul>
+    </div>
+    <div class="why">
+      <p class="k">Why Accenture and Faculty</p>
+      <p><b>Faculty</b>Frontier, prototyping support, and expertise in AI safety, evaluation and red teaming.</p>
+      <p><b>Accenture</b>Delivery across operations, enterprise functions and technology, with risk and regulatory practice to carry a tested approach into the workflows.</p>
+      <p class="muted">Works with the tools and models you already use, including models from our GAO Partnerships: Google, Anthropic and OpenAI. We test Frontier where it adds value.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAGE 3 ================= -->
+<section class="page p3">
+  <div class="top"><img src="../../public/brand/cobrand.svg" alt="Accenture and Faculty"><span class="k">/&nbsp;&nbsp;Responsible AI&nbsp;&nbsp;/&nbsp;&nbsp;GAO Partnerships</span></div>
+  <h1 class="d h1">Evidence you can show.</h1>
+  <p class="lede">Tested against your own rules. Every finding becomes an owned action.</p>
+
+  <div class="rule"></div>
+  <p class="k">How the evidence is produced</p>
+  <div class="steps s6">
+    <div class="step"><span class="k">01</span><div class="d">Your rules in</div><p>Policies, limits and approvals</p></div>
+    <div class="step"><span class="k">02</span><div class="d">Generate</div><p>Realistic and difficult cases</p></div>
+    <div class="step"><span class="k">03</span><div class="d">Run</div><p>Against the workflows and agents</p></div>
+    <div class="step"><span class="k">04</span><div class="d">Grade</div><p>Every response against your rules</p></div>
+    <div class="step out"><span class="k">05</span><div class="d">Verify</div><p>Specialists check serious findings</p></div>
+    <div class="step hot"><span class="k">06</span><div class="d">Evidence pack</div><p>Scored and audit ready</p></div>
+  </div>
+  <p class="note">White outline: people verify. Works across the models you use. Repeated at every release.</p>
+
+  <div class="rule"></div>
+  <p class="k">What leaders get&nbsp;&nbsp;/&nbsp;&nbsp;a clear picture and a ranked agenda&nbsp;&nbsp;/&nbsp;&nbsp;<span style="color:var(--silver)">illustrative</span></p>
+  <div class="two">
+    <div>
+      <p class="k dim">Readiness to test: five checks</p>
+      <svg class="radar" viewBox="-80 -14 400 252" width="100%" height="176" aria-hidden="true">
+        <g id="radar"></g>
+      </svg>
+      <div class="legend"><span><i></i>Today</span><span><i class="t"></i>Needed for the test</span></div>
+    </div>
+    <div>
+      <p class="k dim">Evidence maturity, by layer</p>
+      <div class="heat" style="margin-top:8px">
+        <span></span><span class="h">Initial</span><span class="h">Developing</span><span class="h">Defined</span><span class="h">Managed</span><span class="h">Optimised</span>
+        <span class="r">3 · Systems and data</span><span class="c f3"></span><span class="c f2"></span><span class="c f tgt"></span><span class="c"></span><span class="c"></span>
+        <span class="r">2 · Workflows</span><span class="c f3"></span><span class="c f2"></span><span class="c tgt"></span><span class="c"></span><span class="c"></span>
+        <span class="r">1 · Decisions</span><span class="c f3"></span><span class="c"></span><span class="c tgt"></span><span class="c"></span><span class="c"></span>
+      </div>
+      <p class="k dim" style="margin-top:14px">Example findings, ranked</p>
+      <ol class="find">
+        <li><span class="n">01</span><span>Recurring causes traced to owners outside the workflow</span><span class="tag">Fix at source</span></li>
+        <li><span class="n">02</span><span>Similar checks built separately in more than one workflow</span><span class="tag">Build once</span></li>
+        <li><span class="n">03</span><span>Review order set within each team, not across teams</span><span class="tag">Priority</span></li>
+      </ol>
+      <p class="note">Each finding maps to an action with a named owner.</p>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+  <p class="k">What is tested at each layer</p>
+  <table>
+    <thead><tr><th style="width:22%">Layer</th><th style="width:38%">What is tested</th><th style="width:26%">Evidence kept</th><th>Signed off by</th></tr></thead>
+    <tbody>
+      <tr><td><span class="k">Layer 1</span><div class="d">Decisions</div></td><td>Recommendations stay inside the limits owners set, and show their reasoning</td><td>Decision record with rationale and trade off</td><td>Control owners</td></tr>
+      <tr><td><span class="k">Layer 2</span><div class="d">Workflows</div></td><td>Exceptions are classified and routed correctly, and approvals are respected</td><td>Graded sample results and approval trail</td><td>Workflow owners</td></tr>
+      <tr><td><span class="k">Layer 3</span><div class="d">Systems and data</div></td><td>Inputs are standardised, validated and mapped, with lineage</td><td>Validation results and audit trail</td><td>Data owners</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rule"></div>
+  <div class="cols">
+    <div>
+      <p class="k">You keep this either way</p>
+      <ul class="list">
+        <li><svg class="arw" viewBox="0 0 62 100"><path d="M10 12 L52 50 L10 88" fill="none" stroke="#a1a1aa" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg><span>A measured view of the task tested.</span></li>
+        <li><svg class="arw" viewBox="0 0 62 100"><path d="M10 12 L52 50 L10 88" fill="none" stroke="#a1a1aa" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg><span>A ranked list of recurring causes, each with an owner.</span></li>
+        <li><svg class="arw" viewBox="0 0 62 100"><path d="M10 12 L52 50 L10 88" fill="none" stroke="#a1a1aa" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg><span>An audit ready evidence pack.</span></li>
+      </ul>
+    </div>
+    <div>
+      <p class="k">If it works, it scales in 1 process</p>
+      <div class="moves">
+        <div><span class="k">Assess</span>Readiness and baseline by business area</div>
+        <div><span class="k">Govern</span>Findings become owned actions and controls</div>
+        <div><span class="k">Red Team</span>Workflows and agents tested against your rules</div>
+        <div><span class="k">Monitor</span>Retest every release; independent review yearly</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+  <div class="start">
+    <div>
+      <p class="k">Where to start</p>
+      <p class="d">Book a 30 minute scoping call.</p>
+      <p class="lede" style="margin-top:4px;font-size:11.5px">With the leaders who own these workflows, we agree the one task to test, the rules it is tested against, and how it will be measured.</p>
+      <p class="contact"><span class="k">Point of contact</span>Kedus Bekele, Accenture</p>
+    </div>
+    <div class="qr"><span class="k">Scan</span><span class="url">acnr.ai</span><img src="qr_acnr.png" alt="QR code for acnr.ai"></div>
+  </div>
+  <p class="foot">Value is measured in the test. Evidence covers the one task tested; a prototype is not a commitment to build.</p>
+</section>
+
+<script>
+// Radar: five readiness dimensions, today vs needed for the test (illustrative).
+(function () {
+  var dims = [['Inputs standardised', .62], ['Rules documented', .5], ['Volumes measurable', .55], ['Causes traceable', .35], ['Owners reachable', .42]];
+  var C = [120, 112], R = 92, tgt = .75, ns = 'http://www.w3.org/2000/svg', g = document.getElementById('radar');
+  function pt(i, r) { var a = (90 - i * 72) * Math.PI / 180; return [C[0] + r * Math.cos(a), C[1] - r * Math.sin(a)]; }
+  function poly(f, attrs) { var p = document.createElementNS(ns, 'polygon'); p.setAttribute('points', dims.map(function (d, i) { return pt(i, (typeof f === 'number' ? f : d[1]) * R).join(','); }).join(' ')); for (var k in attrs) p.setAttribute(k, attrs[k]); g.appendChild(p); }
+  [.2, .4, .6, .8, 1].forEach(function (f) { poly(f, { fill: 'none', stroke: '#27272a', 'stroke-width': 1 }); });
+  dims.forEach(function (d, i) { var e = pt(i, R), l = document.createElementNS(ns, 'line'); l.setAttribute('x1', C[0]); l.setAttribute('y1', C[1]); l.setAttribute('x2', e[0]); l.setAttribute('y2', e[1]); l.setAttribute('stroke', '#27272a'); g.appendChild(l); });
+  poly(tgt, { fill: 'none', stroke: '#fff', 'stroke-width': 1.3, 'stroke-dasharray': '4 3' });
+  poly(null, { fill: 'rgba(161,0,255,.35)', stroke: '#a100ff', 'stroke-width': 2, 'stroke-linejoin': 'round' });
+  dims.forEach(function (d, i) { var p = pt(i, d[1] * R), c = document.createElementNS(ns, 'circle'); c.setAttribute('cx', p[0]); c.setAttribute('cy', p[1]); c.setAttribute('r', 2.6); c.setAttribute('fill', '#a100ff'); g.appendChild(c); });
+  dims.forEach(function (d, i) { var p = pt(i, R + 12), t = document.createElementNS(ns, 'text'), cx = Math.cos((90 - i * 72) * Math.PI / 180); t.setAttribute('x', p[0]); t.setAttribute('y', p[1] + (i === 0 ? -2 : i === 2 || i === 3 ? 9 : 3)); t.setAttribute('text-anchor', Math.abs(cx) < .2 ? 'middle' : cx > 0 ? 'start' : 'end'); t.textContent = d[0]; g.appendChild(t); });
+})();
+</script>
+</body>
+</html>

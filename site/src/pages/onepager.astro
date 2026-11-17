@@ -5,6 +5,8 @@ import Mark from '../components/Mark.astro';
 
 const PDF = '/onepager/ACN_RAI_One-Pager.pdf';
 const PREVIEW = '/onepager/preview.png';
+const THREE = '/threepager/ACN_RAI_Three-Pager.pdf';
+const THREE_PAGES = [1, 2, 3].map((n) => `/threepager/page-${n}.png`);
 ---
 <Base
   title="One Pager | Accenture and Faculty Responsible AI"
@@ -19,6 +21,7 @@ const PREVIEW = '/onepager/preview.png';
       <div class="top__cta reveal">
         <a class="btn btn--primary" href={PDF} download>Download PDF</a>
         <a class="btn" href={PDF} target="_blank" rel="noopener">Open in a new tab ↗</a>
+        <a class="btn" href="#three">Read the three pager <Chevron color="currentColor" /></a>
       </div>
     </div>
   </section>
@@ -29,6 +32,30 @@ const PREVIEW = '/onepager/preview.png';
         <img src={PREVIEW} width="1700" height="2200" alt="The Accenture and Faculty Responsible AI one pager" loading="eager" decoding="async" />
       </a>
       <p class="mono sheet__meta">PDF / 1 page / US Letter / 144 KB</p>
+    </div>
+  </section>
+
+  <section class="sec sec--dark three" id="three" aria-labelledby="three-title">
+    <div class="wrap three__in">
+      <header class="three__head reveal">
+        <p class="kicker">Go deeper / Three Pager</p>
+        <h2 class="display h2" id="three-title">The same approach, applied to operations.</h2>
+        <p class="lede">Resolve issues at the source, decide what matters first, and prove it on one workflow. Three pages on the decision layer, the test and the evidence leaders get.</p>
+        <div class="top__cta">
+          <a class="btn btn--primary" href={THREE} download>Download the three pager</a>
+          <a class="btn" href={THREE} target="_blank" rel="noopener">Open in a new tab ↗</a>
+        </div>
+      </header>
+      <ol class="three__pages">
+        {THREE_PAGES.map((src, i) => (
+          <li class="reveal" style={`transition-delay:${i * 80}ms`}>
+            <a class="three__page" href={THREE} target="_blank" rel="noopener" aria-label={`Open page ${i + 1} of the three pager`}>
+              <img src={src} width="1632" height="2112" alt={`Three pager, page ${i + 1}`} loading="lazy" decoding="async" />
+            </a>
+          </li>
+        ))}
+      </ol>
+      <p class="mono sheet__meta">PDF / 3 pages / US Letter / 150 KB</p>
     </div>
   </section>
 </Base>
@@ -44,5 +71,13 @@ const PREVIEW = '/onepager/preview.png';
   .sheet__page { display: block; max-width: 880px; margin: 0 auto; background: #fff; box-shadow: 0 1px 0 var(--rule), 0 24px 64px rgba(9, 9, 11, 0.18); transition: box-shadow 0.25s, transform 0.25s; }
   .sheet__page:hover { box-shadow: 0 0 0 1.5px var(--purple), 0 28px 72px rgba(9, 9, 11, 0.22); transform: translateY(-2px); }
   .sheet__page img { display: block; width: 100%; height: auto; }
+  .three { padding: clamp(64px, 9vw, 120px) 0; }
+  .three__in { display: grid; gap: clamp(32px, 4vw, 48px); }
+  .three__head { display: grid; gap: 20px; }
+  .three__pages { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 2vw, 24px); }
+  .three__page { display: block; border: 1px solid #27272a; transition: border-color 0.25s, transform 0.25s; }
+  .three__page:hover { border-color: var(--purple); transform: translateY(-2px); }
+  .three__page img { display: block; width: 100%; height: auto; }
+  @media (max-width: 760px) { .three__pages { grid-template-columns: 1fr; max-width: 520px; } }
   .sheet__meta { text-align: center; margin-top: 20px; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); }
 </style>
